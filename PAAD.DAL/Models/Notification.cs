@@ -2,6 +2,7 @@
 {
     internal class Notification
     {
+        public int Id { get; set; }
         public User Author { get; set; }
         public Course Course { get; set; }
         public string Title { get; set; }
