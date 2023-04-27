@@ -2,6 +2,6 @@
 {
     internal class Course
     {
-        // TODO
+        public string Name { get; set; }
     }
 }

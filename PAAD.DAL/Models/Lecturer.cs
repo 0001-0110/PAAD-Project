@@ -1,7 +1,7 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal class Lecturer
+    internal class Lecturer : User
     {
-        // TODO
+        public Course Course { get; set; }
     }
 }
