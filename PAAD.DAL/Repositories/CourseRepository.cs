@@ -1,8 +1,9 @@
-﻿using PAAD.DAL.Models; 
+﻿using PAAD.DAL.Models;
+using PAAD.DAL.DatabaseContext;
 
 namespace PAAD.DAL.Repositories
 {
-    internal class CourseRepository : IRepository<Course>
+    internal class CourseRepository : Repository<Course>
     {
         // TODO
     }
