@@ -1,3 +1,6 @@
+using PAAD_Client.Administrator;
+using PAAD_Client.Lecturer;
+
 namespace PAAD_Client
 {
     internal static class Program
@@ -11,7 +14,7 @@ namespace PAAD_Client
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
     }
 }
