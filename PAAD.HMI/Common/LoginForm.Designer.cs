@@ -34,8 +34,7 @@
             tbPassword = new TextBox();
             label3 = new Label();
             btnSubmitLogin = new Button();
-            lbErrorEmail = new Label();
-            lbErrorPassword = new Label();
+            lbError = new Label();
             SuspendLayout();
             // 
             // label1
@@ -92,35 +91,23 @@
             btnSubmitLogin.Text = "Submit";
             btnSubmitLogin.UseVisualStyleBackColor = false;
             // 
-            // lbErrorEmail
+            // lbError
             // 
-            lbErrorEmail.AutoSize = true;
-            lbErrorEmail.ForeColor = Color.Red;
-            lbErrorEmail.Location = new Point(635, 226);
-            lbErrorEmail.Name = "lbErrorEmail";
-            lbErrorEmail.Size = new Size(23, 25);
-            lbErrorEmail.TabIndex = 6;
-            lbErrorEmail.Text = "X";
-            lbErrorEmail.Visible = false;
-            // 
-            // lbErrorPassword
-            // 
-            lbErrorPassword.AutoSize = true;
-            lbErrorPassword.ForeColor = Color.Red;
-            lbErrorPassword.Location = new Point(635, 368);
-            lbErrorPassword.Name = "lbErrorPassword";
-            lbErrorPassword.Size = new Size(23, 25);
-            lbErrorPassword.TabIndex = 7;
-            lbErrorPassword.Text = "X";
-            lbErrorPassword.Visible = false;
+            lbError.AutoSize = true;
+            lbError.ForeColor = Color.Red;
+            lbError.Location = new Point(36, 141);
+            lbError.Name = "lbError";
+            lbError.Size = new Size(271, 25);
+            lbError.TabIndex = 7;
+            lbError.Text = "Invalid email adress or password";
+            lbError.Visible = false;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(664, 615);
-            Controls.Add(lbErrorPassword);
-            Controls.Add(lbErrorEmail);
+            Controls.Add(lbError);
             Controls.Add(btnSubmitLogin);
             Controls.Add(tbPassword);
             Controls.Add(label3);
@@ -142,6 +129,6 @@
         private Label label3;
         private Button btnSubmitLogin;
         private Label lbErrorEmail;
-        private Label lbErrorPassword;
+        private Label lbError;
     }
 }
