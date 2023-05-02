@@ -3,39 +3,40 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-    internal class NotificationRepository : IRepository<Notification>
+    internal class AdministratorRepository : IRepository<Administrator>
     {
-        public IEnumerable<Notification> GetAll()
+
+        public IEnumerable<Administrator> GetAll()
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            return dbContext.Notifications;
+            return dbContext.Administrators;
         }
 
-        public Notification? GetById(int id)
+        public Administrator? GetById(int id)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            return dbContext.Notifications.SingleOrDefault(notification => notification.Id == id);
+            return dbContext.Administrators.SingleOrDefault(administrator => administrator.Id == id);
         }
 
-        public Notification Create(Notification entity)
+        public Administrator Create(Administrator entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            dbContext.Notifications.Add(entity);
+            dbContext.Administrators.Add(entity);
             dbContext.SaveChanges();
             return entity;
         }
 
-        public Notification? Edit(int id, Notification edit)
+        public Administrator Edit(int id, Administrator edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             throw new NotImplementedException();
             dbContext.SaveChanges();
         }
 
-        public void Delete(Notification item)
+        public void Delete(Administrator item)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            dbContext.Notifications.Remove(item);
+            dbContext.Administrators.Remove(item);
             dbContext.SaveChanges();
         }
     }

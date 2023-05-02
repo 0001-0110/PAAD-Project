@@ -3,39 +3,39 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-    internal class NotificationRepository : IRepository<Notification>
+    internal class StudentRepository : IRepository<Student>
     {
-        public IEnumerable<Notification> GetAll()
+
+        public IEnumerable<Student> GetAll()
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            return dbContext.Notifications;
+            return dbContext.Students;
         }
 
-        public Notification? GetById(int id)
+        public Student? GetById(int id)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            return dbContext.Notifications.SingleOrDefault(notification => notification.Id == id);
+            return dbContext.Students.SingleOrDefault(student => student.Id == id);
         }
 
-        public Notification Create(Notification entity)
+        public Student Create(Student entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            dbContext.Notifications.Add(entity);
+            dbContext.Students.Add(entity);
             dbContext.SaveChanges();
             return entity;
         }
 
-        public Notification? Edit(int id, Notification edit)
+        public Student? Edit(int id, Student edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             throw new NotImplementedException();
-            dbContext.SaveChanges();
         }
 
-        public void Delete(Notification item)
+        public void Delete(Student item)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            dbContext.Notifications.Remove(item);
+            dbContext.Students.Remove(item);
             dbContext.SaveChanges();
         }
     }
