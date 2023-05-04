@@ -1,6 +1,6 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal class Administrator : User
+    public class Administrator : User
     {
 
     }

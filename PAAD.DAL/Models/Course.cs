@@ -1,6 +1,6 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal class Course : Model
+    public class Course : Model
     {
         public string Name { get; set; }
 

@@ -3,7 +3,7 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-    internal class AdministratorRepository : IRepository<Administrator>
+    public class AdministratorRepository : IRepository<Administrator>
     {
 
         public IEnumerable<Administrator> GetAll()

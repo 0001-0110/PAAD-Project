@@ -1,6 +1,6 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal abstract class User : Model
+    public abstract class User : Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
