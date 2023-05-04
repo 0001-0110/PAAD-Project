@@ -1,4 +1,5 @@
 ﻿using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.Extensions;
 using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
@@ -34,7 +35,7 @@ namespace PAAD.DAL.Repositories
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             Administrator administrator = dbContext.Administrators.First(administrator => administrator.Id == id);
-            throw new NotImplementedException();
+            administrator.Edit(edit);
             dbContext.SaveChanges();
         }
 
