@@ -4,7 +4,7 @@ namespace PAAD.DAL.Repositories
 {
     public interface IRepository<T> where T : Model
     {
-        public bool Exists(int id);
+        public bool IdExists(int id);
 
         public IEnumerable<T> GetAll();
 
