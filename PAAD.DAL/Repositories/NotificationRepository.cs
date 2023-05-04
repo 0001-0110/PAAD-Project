@@ -5,6 +5,12 @@ namespace PAAD.DAL.Repositories
 {
     public class NotificationRepository : IRepository<Notification>
     {
+        public bool Exists(int id)
+        {
+            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
+            return dbContext.Notifications.Any(notification => notification.Id == id);
+        }
+
         public IEnumerable<Notification> GetAll()
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();

@@ -5,6 +5,11 @@ namespace PAAD.DAL.Repositories
 {
     public class AdministratorRepository : IRepository<Administrator>
     {
+        public bool Exists(int id)
+        {
+            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
+            return dbContext.Administrators.Any(administrator => administrator.Id == id);
+        }
 
         public IEnumerable<Administrator> GetAll()
         {
