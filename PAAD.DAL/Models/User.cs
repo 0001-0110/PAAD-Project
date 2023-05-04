@@ -1,13 +1,14 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal abstract class User
+    internal abstract class User : Model
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
 
-        // TODO Is this the right way to handle this thing ?
-        public string Password { get; set; }
+        // TODO This might not be the right type
+        public string PasswordHash { get; set; }
+
+        public virtual IEnumerable<Notification> Notifications { get; set; }
     }
 }

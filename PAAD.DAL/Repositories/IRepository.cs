@@ -1,8 +1,9 @@
-﻿namespace PAAD.DAL.Repositories
+﻿using PAAD.DAL.Models;
+
+namespace PAAD.DAL.Repositories
 {
-    internal interface IRepository<T>
+    internal interface IRepository<T> where T : Model
     {
-        // TODO
         public IEnumerable<T> GetAll();
 
         public T? GetById(int id);
