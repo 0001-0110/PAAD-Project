@@ -1,4 +1,5 @@
 ﻿using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.Extensions;
 using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
@@ -20,7 +21,7 @@ namespace PAAD.DAL.Repositories
         public Student? GetById(int id)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            return dbContext.Students.SingleOrDefault(student => student.Id == id);
+            return dbContext.Students.Single(student => student.Id == id);
         }
 
         public void Create(Student entity)
@@ -33,7 +34,8 @@ namespace PAAD.DAL.Repositories
         public void Edit(int id, Student edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            throw new NotImplementedException();
+            Student student = dbContext.Students.Single(student => student.Id == id);
+            student.Edit(edit);
             dbContext.SaveChanges();
         }
 
