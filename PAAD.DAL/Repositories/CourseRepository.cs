@@ -5,6 +5,12 @@ namespace PAAD.DAL.Repositories
 {
     public class CourseRepository : IRepository<Course>
     {
+        public bool Exists(int id)
+        {
+            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
+            return dbContext.Courses.Any(course => course.Id == id);
+        }
+
         public IEnumerable<Course> GetAll()
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
