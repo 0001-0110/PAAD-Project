@@ -7,17 +7,17 @@ namespace PAAD.BLL.Services
     {
         public static readonly DataService Instance = new DataService();
 
-        private Dictionary<Type, IRepository<Model>> repositories;
+        private Dictionary<Type, object> repositories;
 
-        private DataService() 
+        private DataService()
         {
-            repositories = new Dictionary<Type, IRepository<Model>>()
+            repositories = new Dictionary<Type, object>()
             {
-                [typeof(Notification)] = (IRepository<Model>)new NotificationRepository(),
-                //[typeof(Student)] = (IRepository<Model>)new StudentRepository(),
-                [typeof(Lecturer)] = (IRepository<Model>)new LecturerRepository(),
-                [typeof(Administrator)] = (IRepository<Model>)new AdministratorRepository(),
-                [typeof(Course)] = (IRepository<Model>)new CourseRepository(),
+                [typeof(Notification)] = new NotificationRepository(),
+                //[typeof(Student)] = new StudentRepository(),
+                [typeof(Lecturer)] = new LecturerRepository(),
+                [typeof(Administrator)] = new AdministratorRepository(),
+                [typeof(Course)] = new CourseRepository(),
             };
         }
 
@@ -25,7 +25,7 @@ namespace PAAD.BLL.Services
 
         private IRepository<T> GetRepository<T>() where T : Model
         {
-            IRepository<Model>? repository;
+            object? repository;
 
             if (!repositories.TryGetValue(typeof(T), out repository))
                 throw new KeyNotFoundException();
