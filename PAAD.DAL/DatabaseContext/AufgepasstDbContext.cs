@@ -12,7 +12,6 @@ namespace PAAD.DAL.DatabaseContext
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
 
-        // TODO Get connection string
         public AufgepasstDbContext() 
             : base(new DbContextOptionsBuilder<AufgepasstDbContext>()
                   .UseSqlServer(ConfigurationUtility.GetConnectionString()).Options) { }
