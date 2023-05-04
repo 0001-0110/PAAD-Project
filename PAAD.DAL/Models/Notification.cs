@@ -1,6 +1,6 @@
 ﻿namespace PAAD.DAL.Models
 {
-    internal class Notification : Model
+    public class Notification : Model
     {
         public User Author { get; set; }
         public Course Course { get; set; }

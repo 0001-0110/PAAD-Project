@@ -3,7 +3,7 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-    internal class LecturerRepository : IRepository<Lecturer>
+    public class LecturerRepository : IRepository<Lecturer>
     {
 
         public IEnumerable<Lecturer> GetAll()

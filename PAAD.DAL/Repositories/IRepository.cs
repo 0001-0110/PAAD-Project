@@ -2,7 +2,7 @@
 
 namespace PAAD.DAL.Repositories
 {
-    internal interface IRepository<T> where T : Model
+    public interface IRepository<T> where T : Model
     {
         public IEnumerable<T> GetAll();
 
