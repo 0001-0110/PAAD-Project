@@ -13,4 +13,8 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PAAD.BLL\PAAD.BLL.csproj" />
+  </ItemGroup>
+
 </Project>
