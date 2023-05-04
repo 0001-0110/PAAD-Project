@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using PAAD.DAL.Utilities;
+using Microsoft.EntityFrameworkCore;
 using PAAD.DAL.Models;
 
 namespace PAAD.DAL.DatabaseContext
@@ -12,7 +13,9 @@ namespace PAAD.DAL.DatabaseContext
         public virtual DbSet<Course> Courses { get; set; }
 
         // TODO Get connection string
-        public AufgepasstDbContext() : base(new DbContextOptionsBuilder<AufgepasstDbContext>().UseSqlServer("").Options) { }
+        public AufgepasstDbContext() 
+            : base(new DbContextOptionsBuilder<AufgepasstDbContext>()
+                  .UseSqlServer(ConfigurationUtility.GetConnectionString()).Options) { }
 
         // TODO Model creation
         protected override void OnModelCreating(ModelBuilder modelBuilder)
