@@ -1,4 +1,7 @@
-﻿namespace PAAD.BLL.Services
+﻿using PAAD.DAL.Models;
+using PAAD.DAL.Repositories;
+
+namespace PAAD.BLL.Services
 {
     public class DataService
     {
