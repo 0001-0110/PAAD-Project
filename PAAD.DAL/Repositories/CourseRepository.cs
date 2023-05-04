@@ -17,15 +17,14 @@ namespace PAAD.DAL.Repositories
             return dbContext.Courses.SingleOrDefault(course => course.Id == id);
         }
 
-        public Course Create(Course entity)
+        public void Create(Course entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Courses.Add(entity);
             dbContext.SaveChanges();
-            return entity;
         }
 
-        public Course? Edit(int id, Course edit)
+        public void Edit(int id, Course edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             throw new NotImplementedException();

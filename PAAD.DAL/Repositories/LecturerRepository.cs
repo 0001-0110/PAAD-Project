@@ -18,15 +18,14 @@ namespace PAAD.DAL.Repositories
             return dbContext.Lecturers.SingleOrDefault(lecturer => lecturer.Id == id);
         }
 
-        public Lecturer Create(Lecturer entity)
+        public void Create(Lecturer entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Lecturers.Add(entity);
             dbContext.SaveChanges();
-            return entity;
         }
 
-        public Lecturer? Edit(int id, Lecturer edit)
+        public void Edit(int id, Lecturer edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             throw new NotImplementedException();
