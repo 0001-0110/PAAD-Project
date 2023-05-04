@@ -41,41 +41,46 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(283, 62);
+            label1.Location = new Point(226, 50);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(98, 38);
+            label1.Size = new Size(85, 32);
             label1.TabIndex = 0;
             label1.Text = "Log in";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(36, 196);
+            label2.Location = new Point(29, 157);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(58, 25);
+            label2.Size = new Size(49, 20);
             label2.TabIndex = 1;
             label2.Text = "Email:";
             // 
             // tbEmail
             // 
-            tbEmail.Location = new Point(36, 224);
+            tbEmail.Location = new Point(29, 179);
+            tbEmail.Margin = new Padding(2, 2, 2, 2);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(593, 31);
+            tbEmail.Size = new Size(475, 27);
             tbEmail.TabIndex = 2;
             // 
             // tbPassword
             // 
-            tbPassword.Location = new Point(36, 366);
+            tbPassword.Location = new Point(29, 293);
+            tbPassword.Margin = new Padding(2, 2, 2, 2);
             tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(593, 31);
+            tbPassword.Size = new Size(475, 27);
             tbPassword.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(36, 338);
+            label3.Location = new Point(29, 270);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(91, 25);
+            label3.Size = new Size(73, 20);
             label3.TabIndex = 3;
             label3.Text = "Password:";
             // 
@@ -84,29 +89,32 @@
             btnSubmitLogin.BackColor = SystemColors.Highlight;
             btnSubmitLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubmitLogin.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmitLogin.Location = new Point(262, 519);
+            btnSubmitLogin.Location = new Point(210, 415);
+            btnSubmitLogin.Margin = new Padding(2, 2, 2, 2);
             btnSubmitLogin.Name = "btnSubmitLogin";
-            btnSubmitLogin.Size = new Size(141, 68);
+            btnSubmitLogin.Size = new Size(113, 54);
             btnSubmitLogin.TabIndex = 5;
             btnSubmitLogin.Text = "Submit";
             btnSubmitLogin.UseVisualStyleBackColor = false;
+            btnSubmitLogin.MouseClick += btnSubmitLogin_MouseClick;
             // 
             // lbError
             // 
             lbError.AutoSize = true;
             lbError.ForeColor = Color.Red;
-            lbError.Location = new Point(36, 141);
+            lbError.Location = new Point(29, 113);
+            lbError.Margin = new Padding(2, 0, 2, 0);
             lbError.Name = "lbError";
-            lbError.Size = new Size(271, 25);
+            lbError.Size = new Size(225, 20);
             lbError.TabIndex = 7;
             lbError.Text = "Invalid email adress or password";
             lbError.Visible = false;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(664, 615);
+            ClientSize = new Size(531, 492);
             Controls.Add(lbError);
             Controls.Add(btnSubmitLogin);
             Controls.Add(tbPassword);
@@ -114,6 +122,7 @@
             Controls.Add(tbEmail);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "LoginForm";
             Text = "Login";
             ResumeLayout(false);

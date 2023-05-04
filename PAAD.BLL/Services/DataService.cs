@@ -21,6 +21,8 @@ namespace PAAD.BLL.Services
             };
         }
 
+        #region Call to repositories
+
         private IRepository<T> GetRepository<T>() where T : Model
         {
             IRepository<Model>? repository;
@@ -73,6 +75,14 @@ namespace PAAD.BLL.Services
 
             repository.Delete(repository.GetById(id)!);
             return true;
+        }
+
+        #endregion
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return GetAll<Lecturer>().Cast<User>().Concat(GetAll<Administrator>());
+            //return GetAll<Student>().Cast<User>().GetAll<Lecturer>().Cast<User>().Concat(GetAll<Administrator>());
         }
     }
 }
