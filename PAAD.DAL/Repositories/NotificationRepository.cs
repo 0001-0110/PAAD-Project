@@ -17,15 +17,14 @@ namespace PAAD.DAL.Repositories
             return dbContext.Notifications.SingleOrDefault(notification => notification.Id == id);
         }
 
-        public Notification Create(Notification entity)
+        public void Create(Notification entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Notifications.Add(entity);
             dbContext.SaveChanges();
-            return entity;
         }
 
-        public Notification? Edit(int id, Notification edit)
+        public void Edit(int id, Notification edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             throw new NotImplementedException();

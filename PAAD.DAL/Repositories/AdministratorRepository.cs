@@ -18,17 +18,17 @@ namespace PAAD.DAL.Repositories
             return dbContext.Administrators.SingleOrDefault(administrator => administrator.Id == id);
         }
 
-        public Administrator Create(Administrator entity)
+        public void Create(Administrator entity)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Administrators.Add(entity);
             dbContext.SaveChanges();
-            return entity;
         }
 
-        public Administrator Edit(int id, Administrator edit)
+        public void Edit(int id, Administrator edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
+            Administrator administrator = dbContext.Administrators.First(administrator => administrator.Id == id);
             throw new NotImplementedException();
             dbContext.SaveChanges();
         }

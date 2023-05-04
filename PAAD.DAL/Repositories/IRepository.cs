@@ -7,9 +7,9 @@
 
         public T? GetById(int id);
 
-        public T Create(T entity);
+        public void Create(T entity);
 
-        public T? Edit(int id, T edit);
+        public void Edit(int id, T edit);
 
         public void Delete(T item);
     }
