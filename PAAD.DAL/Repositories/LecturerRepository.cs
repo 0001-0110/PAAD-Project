@@ -5,7 +5,7 @@ namespace PAAD.DAL.Repositories
 {
     public class LecturerRepository : IRepository<Lecturer>
     {
-        public bool Exists(int id)
+        public bool IdExists(int id)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             return dbContext.Lecturers.Any(lecturer => lecturer.Id == id);
