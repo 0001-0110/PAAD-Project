@@ -1,4 +1,5 @@
 ﻿using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.Extensions;
 using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
@@ -33,7 +34,8 @@ namespace PAAD.DAL.Repositories
         public void Edit(int id, Lecturer edit)
         {
             using AufgepasstDbContext dbContext = new AufgepasstDbContext();
-            throw new NotImplementedException();
+            Lecturer lecturer = dbContext.Lecturers.Single(lecturer => lecturer.Id == id);
+            lecturer.Edit(edit);
             dbContext.SaveChanges();
         }
 
