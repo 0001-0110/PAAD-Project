@@ -4,44 +4,40 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-    public class CourseRepository : IRepository<Course>
+    public class CourseRepository : Repository<Course>
     {
-        public bool IdExists(int id)
+        public CourseRepository(AufgepasstDbContext dbContext) : base(dbContext) { }
+
+        public override bool IdExists(int id)
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             return dbContext.Courses.Any(course => course.Id == id);
         }
 
-        public IEnumerable<Course> GetAll()
+        public override IEnumerable<Course> GetAll()
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             return dbContext.Courses;
         }
 
-        public Course? GetById(int id)
+        public override Course? GetById(int id)
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             return dbContext.Courses.SingleOrDefault(course => course.Id == id);
         }
 
-        public void Create(Course entity)
+        public override void Create(Course entity)
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Courses.Add(entity);
             dbContext.SaveChanges();
         }
 
-        public void Edit(int id, Course edit)
+        public override void Edit(int id, Course edit)
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             Course course = dbContext.Courses.Single(course => course.Id == id);
             course.Edit(edit);
             dbContext.SaveChanges();
         }
 
-        public void Delete(Course item)
+        public override void Delete(Course item)
         {
-            using AufgepasstDbContext dbContext = new AufgepasstDbContext();
             dbContext.Courses.Remove(item);
             dbContext.SaveChanges();
         }

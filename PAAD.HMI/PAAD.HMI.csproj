@@ -11,9 +11,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\InversionOfControl\InversionOfControl.csproj" />
     <ProjectReference Include="..\PAAD.BLL\PAAD.BLL.csproj" />
   </ItemGroup>
 
