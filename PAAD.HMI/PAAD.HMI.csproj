@@ -9,4 +9,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InversionOfControl\InversionOfControl.csproj" />
+    <ProjectReference Include="..\PAAD.BLL\PAAD.BLL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,7 +4,7 @@ using PAAD.DAL.Utilities;
 
 namespace PAAD.DAL.DatabaseContext
 {
-    internal class AufgepasstDbContext : DbContext
+    public class AufgepasstDbContext : DbContext
     {
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Student> Students { get; set; }
