@@ -1,18 +1,20 @@
 using PAAD.BLL.Services;
-using PAAD.DAL.Models;
 
-namespace PAAD_Client
+namespace PAAD.HMI.Common
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private IAuthenticationService authenticationService;
+
+        public LoginForm(IAuthenticationService authenticationService)
         {
+            this.authenticationService = authenticationService;
             InitializeComponent();
         }
 
         private void btnSubmitLogin_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!AuthenticationService.Instance.TryAuthenticate(tbEmail.Text, tbPassword.Text))
+            if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
                 return;
 
             // Authentication success

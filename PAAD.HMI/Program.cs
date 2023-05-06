@@ -1,12 +1,9 @@
-using PAAD.HMI;
 using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.DAL.Repositories;
-using PAAD.DAL.Models;
 using PAAD.DAL.DatabaseContext;
-
-using PAAD_Client.Administrator;
-using PAAD_Client.Lecturer;
+using PAAD.DAL.Models;
+using PAAD.DAL.Repositories;
+using PAAD.HMI.Common;
 
 namespace PAAD
 {
@@ -19,6 +16,7 @@ namespace PAAD
         static void Main()
         {
             DependencyInjector injector = new DependencyInjector()
+                .Map<IAuthenticationService, AuthenticationService>()
                 .Map<IDataService, DataService>()
                 .Map<IRepositoryCollection, RepositoryCollection>()
                 .Map<IRepository<Notification>, NotificationRepository>()
