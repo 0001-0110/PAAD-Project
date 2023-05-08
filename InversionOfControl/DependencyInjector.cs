@@ -10,6 +10,7 @@ namespace InversionOfControl
         public DependencyInjector()
         {
             mappings = new Dictionary<Type, Type>();
+            singletons = new Dictionary<Type, object?>();
 
             Map<IDependencyInjector, DependencyInjector>();
         }
