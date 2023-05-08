@@ -5,18 +5,40 @@ namespace InversionOfControl
     public class DependencyInjector : IDependencyInjector
     {
         private Dictionary<Type, Type> mappings;
+        private Dictionary<Type, object?> singletons;
 
         public DependencyInjector()
         {
             mappings = new Dictionary<Type, Type>();
+
             Map<IDependencyInjector, DependencyInjector>();
         }
 
-        public DependencyInjector Map<T, V>() where V : T
+        public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface
         {
             // TODO might already exists
-            mappings.Add(typeof(T), typeof(V));
+            mappings.Add(typeof(TInterface), typeof(TImplementation));
             return this;
+        }
+
+        public DependencyInjector MapSingleton<TInterface, TImplementation>() where TImplementation : TInterface
+        {
+            // Create the singleton instance
+            singletons.Add(typeof(TInterface), Instantiate(typeof(TImplementation)));
+            return this;
+        }
+
+        private bool HasMapping(Type type)
+        {
+            return mappings.ContainsKey(type) || singletons.ContainsKey(type);
+        }
+
+        private object? GetInstance(Type type)
+        {
+            if (mappings.ContainsKey(type))
+                return Instantiate(mappings[type]);
+            else
+                return singletons[type];
         }
 
         public object? Instantiate(Type type)
@@ -31,13 +53,12 @@ namespace InversionOfControl
             ConstructorInfo? constructor = null;
             for (int i = 0; i < constructors.Count() && constructor == null; i++)
                 constructor = constructors.ElementAt(i).SingleOrDefault(constructor =>
-                constructor.GetParameters().All(parameter => mappings.ContainsKey(parameter.ParameterType)));
+                constructor.GetParameters().All(parameter => HasMapping(parameter.ParameterType)));
 
             // Instantiate all dependencies
-            IEnumerable<Type>? dependencies = constructor?.GetParameters().Select(parameter => mappings[parameter.ParameterType]);
-            IEnumerable<object?>? parameters = dependencies?.Select(dependency => Instantiate(dependency));
+            IEnumerable<object?>? dependencies = constructor?.GetParameters().Select(parameter => GetInstance(parameter.ParameterType));
 
-            return constructor?.Invoke(parameters?.ToArray());
+            return constructor?.Invoke(dependencies?.ToArray());
         }
     }
 }
