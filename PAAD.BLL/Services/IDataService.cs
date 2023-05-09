@@ -9,5 +9,6 @@ namespace PAAD.BLL.Services
         bool Create<T>(T entity) where T : Model;
         bool Edit<T>(int id, T entity) where T : Model;
         bool Delete<T>(int id) where T : Model;
+        public IEnumerable<User> GetAllUsers();
     }
 }
