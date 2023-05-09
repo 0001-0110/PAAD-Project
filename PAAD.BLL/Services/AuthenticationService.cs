@@ -1,39 +1,28 @@
-﻿using PAAD.DAL.Models;
+﻿using PAAD.BLL.Utilities;
+using PAAD.DAL.Models;
+using System.Security.Cryptography;
 
 namespace PAAD.BLL.Services
 {
-    public class AuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
-        public static readonly AuthenticationService Instance = new AuthenticationService();
+        private IDataService dataService;
+        private HashAlgorithm hashAlgorithm;
 
         public User? CurrentUser { get; private set; }
 
-        private static string GetHash(string password)
+        public AuthenticationService(IDataService dataService, HashAlgorithm hashAlgorithm)
         {
-            throw new NotImplementedException("Flemme");
-
-            /*// Generate a 128-bit salt using a sequence of
-            // cryptographically strong random bytes.
-            byte[] salt = RandomNumberGenerator.GetBytes(128 / 8); // divide by 8 to convert bits to bytes
-            Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
-
-            // derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password!,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 100000,
-                numBytesRequested: 256 / 8));
-
-            return hashed;*/
+            this.dataService = dataService;
+            this.hashAlgorithm = hashAlgorithm;
         }
 
         public bool TryAuthenticate(string email, string password)
         {
             // Find the correct user
-            User? user = DataService.Instance.GetAllUsers().FirstOrDefault(user => user.Email == email);
-            // If the user doesn't exist or the password is incorrect, authentication fails
-            if (user == null || GetHash(password) != user.PasswordHash)
+            User? user = dataService.GetAllUsers().FirstOrDefault(user => user.Email == email);
+            // If the email or the password is incorrect, authentication fails
+            if (user == null || !SecurityUtility.VerifyPassword(password, user.PasswordHash, hashAlgorithm))
                 return false;
 
             // Else, register the current user

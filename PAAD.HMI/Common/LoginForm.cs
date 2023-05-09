@@ -15,7 +15,10 @@ namespace PAAD.HMI.Common
         private void btnSubmitLogin_MouseClick(object sender, MouseEventArgs e)
         {
             if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
+            {
+                lbError.Visible = true;
                 return;
+            }
 
             // Authentication success
             // TODO Go to the next screen
