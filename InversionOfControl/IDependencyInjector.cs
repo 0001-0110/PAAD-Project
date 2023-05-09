@@ -4,6 +4,6 @@
     {
         public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface;
         public DependencyInjector MapSingleton<TInterface, TImplementation>() where TImplementation : TInterface;
-        public object? Instantiate(Type type);
+        public T? Instantiate<T>();
     }
 }
