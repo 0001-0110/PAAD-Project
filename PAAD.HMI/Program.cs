@@ -15,21 +15,24 @@ namespace PAAD
         [STAThread]
         static void Main()
         {
+            // Here is where you map your dependencies
+            // Don't forget to add them bottom up (the ones with no dependencies first)
+            // The first argument should be the type you use in your constructor
+            // The second argument should be inheriting of the first argument
             DependencyInjector injector = new DependencyInjector()
-                .Map<IDataService, DataService>()
-                .Map<IRepositoryCollection, RepositoryCollection>()
-                .Map<IRepository<Notification>, NotificationRepository>()
+                .MapSingleton<AufgepasstDbContext, AufgepasstDbContext>()
+                .MapSingleton<IRepository<Notification>, NotificationRepository>()
                 //.Map<IRepository<Student>, StudentRepository>()
-                .Map<IRepository<Lecturer>, LecturerRepository>()
-                .Map<IRepository<Administrator>, AdministratorRepository>()
-                .Map<IRepository<Course>, CourseRepository>()
-                // TODO Add interface
-                .Map<AufgepasstDbContext, AufgepasstDbContext>();
+                .MapSingleton<IRepository<Lecturer>, LecturerRepository>()
+                .MapSingleton<IRepository<Administrator>, AdministratorRepository>()
+                .MapSingleton<IRepository<Course>, CourseRepository>()
+                .Map<IRepositoryCollection, RepositoryCollection>()
+                .Map<IDataService, DataService>();
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run((Form1)injector.Instantiate(typeof(Form1)));
+            Application.Run(injector.Instantiate<Form1>());
         }
     }
 }
