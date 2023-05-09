@@ -55,5 +55,11 @@ namespace PAAD.BLL.Services
             repository.Delete(repository.GetById(id)!);
             return true;
         }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return GetAll<Lecturer>().Cast<User>().Concat(GetAll<Administrator>());
+            //return GetAll<Student>().Cast<User>().GetAll<Lecturer>().Cast<User>().Concat(GetAll<Administrator>());
+        }
     }
 }
