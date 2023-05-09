@@ -32,6 +32,13 @@ namespace InversionOfControl
             return this;
         }
 
+        // This overload allows for the instance to be created manually
+        public DependencyInjector MapSingleton<TInterface, TImplementation>(TImplementation singleton) where TImplementation : notnull, TInterface
+        {
+            singletons.Add(typeof(TInterface), singleton);
+            return this;
+        }
+
         private bool HasMapping(Type type)
         {
             return mappings.ContainsKey(type) || singletons.ContainsKey(type);
