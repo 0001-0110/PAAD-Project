@@ -30,9 +30,9 @@
         {
             label1 = new Label();
             lbAction = new Label();
-            label3 = new Label();
+            lbName = new Label();
             btnCancel = new Button();
-            textBox1 = new TextBox();
+            tbName = new TextBox();
             btnSubmit = new Button();
             SuspendLayout();
             // 
@@ -40,29 +40,29 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(312, 31);
+            label1.Location = new Point(281, 26);
             label1.Name = "label1";
-            label1.Size = new Size(0, 38);
+            label1.Size = new Size(0, 25);
             label1.TabIndex = 0;
             // 
             // lbAction
             // 
             lbAction.AutoSize = true;
             lbAction.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lbAction.Location = new Point(204, 30);
+            lbAction.Location = new Point(184, 25);
             lbAction.Name = "lbAction";
-            lbAction.Size = new Size(208, 38);
+            lbAction.Size = new Size(141, 25);
             lbAction.TabIndex = 1;
             lbAction.Text = "[Action] course";
             // 
-            // label3
+            // lbName
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(51, 139);
-            label3.Name = "label3";
-            label3.Size = new Size(63, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Name:";
+            lbName.AutoSize = true;
+            lbName.Location = new Point(46, 117);
+            lbName.Name = "lbName";
+            lbName.Size = new Size(55, 21);
+            lbName.TabIndex = 2;
+            lbName.Text = "Name:";
             // 
             // btnCancel
             // 
@@ -70,19 +70,19 @@
             btnCancel.DialogResult = DialogResult.Cancel;
             btnCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
-            btnCancel.Location = new Point(371, 300);
+            btnCancel.Location = new Point(334, 252);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(179, 53);
+            btnCancel.Size = new Size(161, 45);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // tbName
             // 
-            textBox1.Location = new Point(51, 181);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(515, 31);
-            textBox1.TabIndex = 4;
+            tbName.Location = new Point(46, 152);
+            tbName.Name = "tbName";
+            tbName.Size = new Size(464, 29);
+            tbName.TabIndex = 4;
             // 
             // btnSubmit
             // 
@@ -90,22 +90,22 @@
             btnSubmit.DialogResult = DialogResult.OK;
             btnSubmit.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmit.Location = new Point(70, 300);
+            btnSubmit.Location = new Point(63, 252);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(179, 53);
+            btnSubmit.Size = new Size(161, 45);
             btnSubmit.TabIndex = 5;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = false;
             // 
             // AddCourseForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(616, 418);
+            ClientSize = new Size(554, 351);
             Controls.Add(btnSubmit);
-            Controls.Add(textBox1);
+            Controls.Add(tbName);
             Controls.Add(btnCancel);
-            Controls.Add(label3);
+            Controls.Add(lbName);
             Controls.Add(lbAction);
             Controls.Add(label1);
             Name = "AddCourseForm";
@@ -118,9 +118,9 @@
 
         private Label label1;
         private Label lbAction;
-        private Label label3;
+        private Label lbName;
         private Button btnCancel;
-        private TextBox textBox1;
+        private TextBox tbName;
         private Button btnSubmit;
     }
 }

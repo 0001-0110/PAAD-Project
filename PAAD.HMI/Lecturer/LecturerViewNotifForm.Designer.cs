@@ -32,7 +32,7 @@
             btnLogout = new Button();
             lbCourseName = new Label();
             lbLecturerName = new Label();
-            label1 = new Label();
+            lbTitle = new Label();
             flpNotificationsContainer = new FlowLayoutPanel();
             btnPost = new Button();
             pnlHeader.SuspendLayout();
@@ -48,16 +48,16 @@
             pnlHeader.ForeColor = SystemColors.ControlText;
             pnlHeader.Location = new Point(0, 0);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1390, 111);
+            pnlHeader.Size = new Size(1251, 93);
             pnlHeader.TabIndex = 0;
             // 
             // btnLogout
             // 
             btnLogout.BackColor = Color.RosyBrown;
             btnLogout.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLogout.Location = new Point(1202, 19);
+            btnLogout.Location = new Point(1082, 16);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(168, 70);
+            btnLogout.Size = new Size(151, 59);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Log out";
             btnLogout.UseVisualStyleBackColor = false;
@@ -67,9 +67,9 @@
             // 
             lbCourseName.AutoSize = true;
             lbCourseName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbCourseName.Location = new Point(12, 62);
+            lbCourseName.Location = new Point(11, 52);
             lbCourseName.Name = "lbCourseName";
-            lbCourseName.Size = new Size(169, 32);
+            lbCourseName.Size = new Size(112, 21);
             lbCourseName.TabIndex = 1;
             lbCourseName.Text = "[Course name]";
             // 
@@ -77,38 +77,38 @@
             // 
             lbLecturerName.AutoSize = true;
             lbLecturerName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbLecturerName.Location = new Point(12, 13);
+            lbLecturerName.Location = new Point(11, 11);
             lbLecturerName.Name = "lbLecturerName";
-            lbLecturerName.Size = new Size(268, 32);
+            lbLecturerName.Size = new Size(178, 21);
             lbLecturerName.TabIndex = 0;
             lbLecturerName.Text = "[First name] [Last name]";
             // 
-            // label1
+            // lbTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(606, 142);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 38);
-            label1.TabIndex = 3;
-            label1.Text = "Notifications";
+            lbTitle.AutoSize = true;
+            lbTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitle.Location = new Point(545, 119);
+            lbTitle.Name = "lbTitle";
+            lbTitle.Size = new Size(123, 25);
+            lbTitle.TabIndex = 3;
+            lbTitle.Text = "Notifications";
             // 
             // flpNotificationsContainer
             // 
             flpNotificationsContainer.AutoScroll = true;
             flpNotificationsContainer.BackColor = SystemColors.ControlLight;
-            flpNotificationsContainer.Location = new Point(90, 213);
+            flpNotificationsContainer.Location = new Point(81, 179);
             flpNotificationsContainer.Name = "flpNotificationsContainer";
-            flpNotificationsContainer.Padding = new Padding(5);
-            flpNotificationsContainer.Size = new Size(1210, 500);
+            flpNotificationsContainer.Padding = new Padding(4, 4, 4, 4);
+            flpNotificationsContainer.Size = new Size(1089, 420);
             flpNotificationsContainer.TabIndex = 4;
             // 
             // btnPost
             // 
             btnPost.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPost.Location = new Point(621, 749);
+            btnPost.Location = new Point(559, 629);
             btnPost.Name = "btnPost";
-            btnPost.Size = new Size(149, 62);
+            btnPost.Size = new Size(134, 52);
             btnPost.TabIndex = 5;
             btnPost.Text = "Post";
             btnPost.UseVisualStyleBackColor = true;
@@ -116,12 +116,12 @@
             // 
             // LecturerViewNotifForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1390, 844);
+            ClientSize = new Size(1251, 709);
             Controls.Add(btnPost);
             Controls.Add(flpNotificationsContainer);
-            Controls.Add(label1);
+            Controls.Add(lbTitle);
             Controls.Add(pnlHeader);
             Name = "LecturerViewNotifForm";
             Text = "View notifications";
@@ -137,7 +137,7 @@
         private Button btnLogout;
         private Label lbCourseName;
         private Label lbLecturerName;
-        private Label label1;
+        private Label lbTitle;
         private FlowLayoutPanel flpNotificationsContainer;
         private Button btnPost;
     }

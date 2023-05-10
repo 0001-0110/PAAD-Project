@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
+            btnDelete = new Button();
+            btnEdit = new Button();
             lbTitle = new Label();
             lbAuthor = new Label();
             lbDescription = new Label();
@@ -40,37 +40,37 @@
             label2 = new Label();
             SuspendLayout();
             // 
-            // button1
+            // btnDelete
             // 
-            button1.BackColor = Color.Brown;
-            button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(1027, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 59);
-            button1.TabIndex = 0;
-            button1.Text = "Delete";
-            button1.UseVisualStyleBackColor = false;
+            btnDelete.BackColor = Color.Brown;
+            btnDelete.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.ForeColor = SystemColors.ButtonHighlight;
+            btnDelete.Location = new Point(924, 11);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(109, 50);
+            btnDelete.TabIndex = 0;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnEdit
             // 
-            button2.BackColor = SystemColors.Highlight;
-            button2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(873, 13);
-            button2.Name = "button2";
-            button2.Size = new Size(121, 59);
-            button2.TabIndex = 1;
-            button2.Text = "Edit";
-            button2.UseVisualStyleBackColor = false;
+            btnEdit.BackColor = SystemColors.Highlight;
+            btnEdit.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEdit.ForeColor = SystemColors.ButtonHighlight;
+            btnEdit.Location = new Point(786, 11);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(109, 50);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
             // 
             // lbTitle
             // 
             lbTitle.AutoSize = true;
             lbTitle.ForeColor = SystemColors.ActiveCaptionText;
-            lbTitle.Location = new Point(18, 25);
+            lbTitle.Location = new Point(16, 21);
             lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(54, 25);
+            lbTitle.Size = new Size(49, 21);
             lbTitle.TabIndex = 2;
             lbTitle.Text = "[Title]";
             // 
@@ -78,9 +78,9 @@
             // 
             lbAuthor.AutoSize = true;
             lbAuthor.ForeColor = SystemColors.ActiveCaptionText;
-            lbAuthor.Location = new Point(56, 68);
+            lbAuthor.Location = new Point(50, 57);
             lbAuthor.Name = "lbAuthor";
-            lbAuthor.Size = new Size(77, 25);
+            lbAuthor.Size = new Size(68, 21);
             lbAuthor.TabIndex = 3;
             lbAuthor.Text = "[Author]";
             // 
@@ -89,9 +89,9 @@
             lbDescription.BackColor = SystemColors.ControlDark;
             lbDescription.BorderStyle = BorderStyle.FixedSingle;
             lbDescription.ForeColor = SystemColors.ActiveCaptionText;
-            lbDescription.Location = new Point(13, 111);
+            lbDescription.Location = new Point(12, 93);
             lbDescription.Name = "lbDescription";
-            lbDescription.Size = new Size(1135, 117);
+            lbDescription.Size = new Size(1022, 99);
             lbDescription.TabIndex = 4;
             lbDescription.Text = "[Description]";
             // 
@@ -99,9 +99,9 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.Location = new Point(18, 248);
+            label4.Location = new Point(16, 208);
             label4.Name = "label4";
-            label4.Size = new Size(124, 25);
+            label4.Size = new Size(107, 21);
             label4.TabIndex = 5;
             label4.Text = "published the:";
             // 
@@ -109,9 +109,9 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(892, 248);
+            label5.Location = new Point(803, 208);
             label5.Name = "label5";
-            label5.Size = new Size(101, 25);
+            label5.Size = new Size(88, 21);
             label5.TabIndex = 6;
             label5.Text = "expires the:";
             // 
@@ -119,9 +119,9 @@
             // 
             lbExpirationDate.AutoSize = true;
             lbExpirationDate.ForeColor = SystemColors.ActiveCaptionText;
-            lbExpirationDate.Location = new Point(999, 248);
+            lbExpirationDate.Location = new Point(899, 208);
             lbExpirationDate.Name = "lbExpirationDate";
-            lbExpirationDate.Size = new Size(126, 25);
+            lbExpirationDate.Size = new Size(110, 21);
             lbExpirationDate.TabIndex = 7;
             lbExpirationDate.Text = "[dd/mm/yyyy]";
             // 
@@ -129,9 +129,9 @@
             // 
             lbPublicationDate.AutoSize = true;
             lbPublicationDate.ForeColor = SystemColors.ActiveCaptionText;
-            lbPublicationDate.Location = new Point(148, 248);
+            lbPublicationDate.Location = new Point(133, 208);
             lbPublicationDate.Name = "lbPublicationDate";
-            lbPublicationDate.Size = new Size(126, 25);
+            lbPublicationDate.Size = new Size(110, 21);
             lbPublicationDate.TabIndex = 8;
             lbPublicationDate.Text = "[dd/mm/yyyy]";
             // 
@@ -139,15 +139,15 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(18, 68);
+            label2.Location = new Point(16, 57);
             label2.Name = "label2";
-            label2.Size = new Size(32, 25);
+            label2.Size = new Size(27, 21);
             label2.TabIndex = 9;
             label2.Text = "by";
             // 
             // NotificationUC
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             Controls.Add(label2);
@@ -158,20 +158,20 @@
             Controls.Add(lbDescription);
             Controls.Add(lbAuthor);
             Controls.Add(lbTitle);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Margin = new Padding(5);
+            Controls.Add(btnEdit);
+            Controls.Add(btnDelete);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "NotificationUC";
-            Padding = new Padding(5);
-            Size = new Size(1160, 279);
+            Padding = new Padding(4, 4, 4, 4);
+            Size = new Size(1044, 234);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button btnDelete;
+        private Button btnEdit;
         private Label lbTitle;
         private Label lbAuthor;
         private Label lbDescription;

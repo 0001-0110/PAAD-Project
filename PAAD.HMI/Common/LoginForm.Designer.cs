@@ -28,65 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
+            lbTitle = new Label();
+            lbEmail = new Label();
             tbEmail = new TextBox();
             tbPassword = new TextBox();
-            label3 = new Label();
+            lbPassword = new Label();
             btnSubmitLogin = new Button();
             lbError = new Label();
             SuspendLayout();
             // 
-            // label1
+            // lbTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(283, 62);
-            label1.Name = "label1";
-            label1.Size = new Size(98, 38);
-            label1.TabIndex = 0;
-            label1.Text = "Log in";
+            lbTitle.AutoSize = true;
+            lbTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTitle.Location = new Point(255, 52);
+            lbTitle.Name = "lbTitle";
+            lbTitle.Size = new Size(68, 25);
+            lbTitle.TabIndex = 0;
+            lbTitle.Text = "Log in";
             // 
-            // label2
+            // lbEmail
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(36, 196);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Email:";
+            lbEmail.AutoSize = true;
+            lbEmail.Location = new Point(32, 165);
+            lbEmail.Name = "lbEmail";
+            lbEmail.Size = new Size(51, 21);
+            lbEmail.TabIndex = 1;
+            lbEmail.Text = "Email:";
             // 
             // tbEmail
             // 
-            tbEmail.Location = new Point(36, 224);
+            tbEmail.Location = new Point(32, 188);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(593, 31);
+            tbEmail.Size = new Size(534, 29);
             tbEmail.TabIndex = 2;
             // 
             // tbPassword
             // 
-            tbPassword.Location = new Point(36, 366);
+            tbPassword.Location = new Point(32, 307);
             tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(593, 31);
+            tbPassword.Size = new Size(534, 29);
             tbPassword.TabIndex = 4;
             // 
-            // label3
+            // lbPassword
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(36, 338);
-            label3.Name = "label3";
-            label3.Size = new Size(91, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Password:";
+            lbPassword.AutoSize = true;
+            lbPassword.Location = new Point(32, 284);
+            lbPassword.Name = "lbPassword";
+            lbPassword.Size = new Size(79, 21);
+            lbPassword.TabIndex = 3;
+            lbPassword.Text = "Password:";
             // 
             // btnSubmitLogin
             // 
             btnSubmitLogin.BackColor = SystemColors.Highlight;
             btnSubmitLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubmitLogin.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmitLogin.Location = new Point(262, 519);
+            btnSubmitLogin.Location = new Point(236, 436);
             btnSubmitLogin.Name = "btnSubmitLogin";
-            btnSubmitLogin.Size = new Size(141, 68);
+            btnSubmitLogin.Size = new Size(127, 57);
             btnSubmitLogin.TabIndex = 5;
             btnSubmitLogin.Text = "Submit";
             btnSubmitLogin.UseVisualStyleBackColor = false;
@@ -95,25 +95,25 @@
             // 
             lbError.AutoSize = true;
             lbError.ForeColor = Color.Red;
-            lbError.Location = new Point(36, 141);
+            lbError.Location = new Point(32, 118);
             lbError.Name = "lbError";
-            lbError.Size = new Size(271, 25);
+            lbError.Size = new Size(237, 21);
             lbError.TabIndex = 7;
             lbError.Text = "Invalid email adress or password";
             lbError.Visible = false;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(664, 615);
+            ClientSize = new Size(598, 517);
             Controls.Add(lbError);
             Controls.Add(btnSubmitLogin);
             Controls.Add(tbPassword);
-            Controls.Add(label3);
+            Controls.Add(lbPassword);
             Controls.Add(tbEmail);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lbEmail);
+            Controls.Add(lbTitle);
             Name = "LoginForm";
             Text = "Login";
             ResumeLayout(false);
@@ -122,11 +122,11 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
+        private Label lbTitle;
+        private Label lbEmail;
         private TextBox tbEmail;
         private TextBox tbPassword;
-        private Label label3;
+        private Label lbPassword;
         private Button btnSubmitLogin;
         private Label lbErrorEmail;
         private Label lbError;
