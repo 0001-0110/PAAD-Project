@@ -1,4 +1,4 @@
-﻿namespace PAAD_Client
+﻿namespace PAAD.HMI
 {
     partial class Form1
     {
