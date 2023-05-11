@@ -33,15 +33,16 @@
             lbNotifs = new Label();
             cbCourses = new ComboBox();
             btnBack = new Button();
+            adminHeaderUC = new AdminHeaderUC();
             SuspendLayout();
             // 
             // btnPost
             // 
             btnPost.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPost.Location = new Point(559, 638);
+            btnPost.Location = new Point(497, 608);
             btnPost.Margin = new Padding(2);
             btnPost.Name = "btnPost";
-            btnPost.Size = new Size(134, 52);
+            btnPost.Size = new Size(119, 50);
             btnPost.TabIndex = 0;
             btnPost.Text = "Post";
             btnPost.UseVisualStyleBackColor = true;
@@ -51,21 +52,21 @@
             // 
             flpNotificationsContainer.AutoScroll = true;
             flpNotificationsContainer.BackColor = SystemColors.ControlLight;
-            flpNotificationsContainer.Location = new Point(81, 245);
+            flpNotificationsContainer.Location = new Point(72, 233);
             flpNotificationsContainer.Margin = new Padding(2);
             flpNotificationsContainer.Name = "flpNotificationsContainer";
             flpNotificationsContainer.Padding = new Padding(4);
-            flpNotificationsContainer.Size = new Size(1089, 374);
+            flpNotificationsContainer.Size = new Size(968, 356);
             flpNotificationsContainer.TabIndex = 8;
             // 
             // lbNotifs
             // 
             lbNotifs.AutoSize = true;
             lbNotifs.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lbNotifs.Location = new Point(546, 127);
+            lbNotifs.Location = new Point(485, 121);
             lbNotifs.Margin = new Padding(2, 0, 2, 0);
             lbNotifs.Name = "lbNotifs";
-            lbNotifs.Size = new Size(123, 25);
+            lbNotifs.Size = new Size(152, 32);
             lbNotifs.TabIndex = 7;
             lbNotifs.Text = "Notifications";
             // 
@@ -73,29 +74,39 @@
             // 
             cbCourses.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCourses.FormattingEnabled = true;
-            cbCourses.Location = new Point(417, 187);
+            cbCourses.Location = new Point(371, 178);
             cbCourses.Margin = new Padding(2);
             cbCourses.Name = "cbCourses";
-            cbCourses.Size = new Size(416, 29);
+            cbCourses.Size = new Size(370, 28);
             cbCourses.TabIndex = 10;
             cbCourses.SelectedIndexChanged += cbCourses_SelectedIndexChanged;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(20, 111);
+            btnBack.Location = new Point(18, 106);
             btnBack.Margin = new Padding(2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(109, 47);
+            btnBack.Size = new Size(97, 45);
             btnBack.TabIndex = 11;
             btnBack.Text = "[back array]";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // adminHeaderUC
+            // 
+            adminHeaderUC.BackColor = SystemColors.ScrollBar;
+            adminHeaderUC.Dock = DockStyle.Top;
+            adminHeaderUC.Location = new Point(0, 0);
+            adminHeaderUC.Name = "adminHeaderUC";
+            adminHeaderUC.Size = new Size(1112, 90);
+            adminHeaderUC.TabIndex = 12;
+            // 
             // AdminViewNotifForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1251, 709);
+            ClientSize = new Size(1112, 675);
+            Controls.Add(adminHeaderUC);
             Controls.Add(btnBack);
             Controls.Add(cbCourses);
             Controls.Add(btnPost);
@@ -115,6 +126,6 @@
         private Label lbNotifs;
         private ComboBox cbCourses;
         private Button btnBack;
-        private AdminHeaderUC adminHeaderuc1;
+        private AdminHeaderUC adminHeaderUC;
     }
 }

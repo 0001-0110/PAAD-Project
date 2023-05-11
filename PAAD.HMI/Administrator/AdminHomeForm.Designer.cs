@@ -31,6 +31,7 @@
             btnNotifs = new Button();
             btnLecturers = new Button();
             btnCourses = new Button();
+            adminHeaderUC = new AdminHeaderUC();
             SuspendLayout();
             // 
             // btnNotifs
@@ -38,9 +39,9 @@
             btnNotifs.Anchor = AnchorStyles.None;
             btnNotifs.BackColor = SystemColors.ScrollBar;
             btnNotifs.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnNotifs.Location = new Point(513, 246);
+            btnNotifs.Location = new Point(456, 234);
             btnNotifs.Name = "btnNotifs";
-            btnNotifs.Size = new Size(225, 52);
+            btnNotifs.Size = new Size(200, 50);
             btnNotifs.TabIndex = 1;
             btnNotifs.Text = "View notifications";
             btnNotifs.UseVisualStyleBackColor = false;
@@ -50,9 +51,9 @@
             btnLecturers.Anchor = AnchorStyles.None;
             btnLecturers.BackColor = SystemColors.ScrollBar;
             btnLecturers.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLecturers.Location = new Point(513, 367);
+            btnLecturers.Location = new Point(456, 350);
             btnLecturers.Name = "btnLecturers";
-            btnLecturers.Size = new Size(225, 52);
+            btnLecturers.Size = new Size(200, 50);
             btnLecturers.TabIndex = 2;
             btnLecturers.Text = "View lecturers";
             btnLecturers.UseVisualStyleBackColor = false;
@@ -62,18 +63,28 @@
             btnCourses.Anchor = AnchorStyles.None;
             btnCourses.BackColor = SystemColors.ScrollBar;
             btnCourses.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCourses.Location = new Point(513, 489);
+            btnCourses.Location = new Point(456, 466);
             btnCourses.Name = "btnCourses";
-            btnCourses.Size = new Size(225, 52);
+            btnCourses.Size = new Size(200, 50);
             btnCourses.TabIndex = 3;
             btnCourses.Text = "View courses";
             btnCourses.UseVisualStyleBackColor = false;
             // 
+            // adminHeaderUC
+            // 
+            adminHeaderUC.BackColor = SystemColors.ScrollBar;
+            adminHeaderUC.Dock = DockStyle.Top;
+            adminHeaderUC.Location = new Point(0, 0);
+            adminHeaderUC.Name = "adminHeaderUC";
+            adminHeaderUC.Size = new Size(1112, 90);
+            adminHeaderUC.TabIndex = 4;
+            // 
             // AdminHomeForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1251, 709);
+            ClientSize = new Size(1112, 675);
+            Controls.Add(adminHeaderUC);
             Controls.Add(btnCourses);
             Controls.Add(btnLecturers);
             Controls.Add(btnNotifs);
@@ -84,9 +95,9 @@
 
         #endregion
 
-        private AdminHeaderUC adminHeaderuc1;
         private Button btnNotifs;
         private Button btnLecturers;
         private Button btnCourses;
+        private AdminHeaderUC adminHeaderUC;
     }
 }
