@@ -12,7 +12,7 @@ namespace InversionOfControl
             mappings = new Dictionary<Type, Type>();
             singletons = new Dictionary<Type, object>();
 
-            Map<IDependencyInjector, DependencyInjector>();
+            MapSingleton<IDependencyInjector, DependencyInjector>(this);
         }
 
         public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface
