@@ -25,7 +25,15 @@ namespace PAAD.DAL.DatabaseContext
             {
                 FirstName = "Amin",
                 LastName = "Istrator",
-                Email = "test",
+                Email = "admin",
+                // Password is test
+                PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
+            });
+            Lecturers.Add(new Lecturer
+            {
+                FirstName = "Lect",
+                LastName = "Urer",
+                Email = "lecturer",
                 // Password is test
                 PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
             });

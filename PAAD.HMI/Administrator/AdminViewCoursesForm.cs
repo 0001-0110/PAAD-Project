@@ -1,3 +1,4 @@
+using PAAD.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +24,13 @@ namespace PAAD.HMI.Administrator
          * 
          * A créer via code pour bien les initialiser.
          */
-        public AdminViewCoursesForm()
+        private DAL.Models.Administrator CurrentUser;
+
+        public AdminViewCoursesForm(DAL.Models.Administrator user)
         {
             InitializeComponent();
+            CurrentUser = user;
+            adminHeaderUC.DisplayUser(user);
         }
 
         private void AdminViewCoursesForm_Load(object sender, EventArgs e)

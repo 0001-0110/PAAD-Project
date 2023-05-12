@@ -1,3 +1,4 @@
+using PAAD.DAL.Models;
 using PAAD.HMI.Common;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,13 @@ namespace PAAD.HMI.Administrator
 {
     public partial class AdminViewNotifForm : Form
     {
-        public AdminViewNotifForm()
+        private DAL.Models.Administrator CurrentUser;
+
+        public AdminViewNotifForm(DAL.Models.Administrator user)
         {
             InitializeComponent();
+            CurrentUser = user;
+            adminHeaderUC.DisplayUser(user);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

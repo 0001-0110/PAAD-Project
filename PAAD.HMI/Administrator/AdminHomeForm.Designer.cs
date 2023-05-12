@@ -45,6 +45,7 @@
             btnNotifs.TabIndex = 1;
             btnNotifs.Text = "View notifications";
             btnNotifs.UseVisualStyleBackColor = false;
+            btnNotifs.Click += btnNotifs_Click;
             // 
             // btnLecturers
             // 
@@ -57,6 +58,7 @@
             btnLecturers.TabIndex = 2;
             btnLecturers.Text = "View lecturers";
             btnLecturers.UseVisualStyleBackColor = false;
+            btnLecturers.Click += btnLecturers_Click;
             // 
             // btnCourses
             // 
@@ -69,6 +71,7 @@
             btnCourses.TabIndex = 3;
             btnCourses.Text = "View courses";
             btnCourses.UseVisualStyleBackColor = false;
+            btnCourses.Click += btnCourses_Click;
             // 
             // adminHeaderUC
             // 

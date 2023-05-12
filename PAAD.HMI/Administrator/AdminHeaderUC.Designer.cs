@@ -44,6 +44,7 @@
             btnLogout.TabIndex = 14;
             btnLogout.Text = "Log out";
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // lbAdmin
             // 

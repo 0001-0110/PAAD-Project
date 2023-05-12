@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PAAD.DAL.Models;
+using PAAD.HMI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +18,11 @@ namespace PAAD.HMI.Administrator
         {
             InitializeComponent();
         }
+
+        public void DisplayUser(User user)
+            => lbLecturerName.Text = $"{user.FirstName} {user.LastName}";
+
+        private void btnLogout_Click(object sender, EventArgs e)
+            => Application.Restart();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAAD.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace PAAD.HMI.Administrator
 {
     public partial class AdminViewLecturersForm : Form
     {
-        public AdminViewLecturersForm()
+        private DAL.Models.Administrator CurrentUser;
+
+        public AdminViewLecturersForm(DAL.Models.Administrator user)
         {
             InitializeComponent();
+            CurrentUser = user;
+            adminHeaderUC.DisplayUser(user);
         }
     }
 }
