@@ -1,4 +1,4 @@
-﻿using PAAD.HMI.Common;
+using PAAD.HMI.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,4 +1,4 @@
-﻿namespace PAAD.HMI
+namespace PAAD.HMI.Common
 {
     partial class LoginForm
     {
@@ -90,6 +90,7 @@
             btnSubmitLogin.TabIndex = 5;
             btnSubmitLogin.Text = "Submit";
             btnSubmitLogin.UseVisualStyleBackColor = false;
+            btnSubmitLogin.MouseClick += btnSubmitLogin_MouseClick;
             // 
             // lbError
             // 
