@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PAAD_Client.Lecturer
+namespace PAAD.HMI.Lecturer
 {
     public partial class AddNotifForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace PAAD_Client.Common
+﻿namespace PAAD.HMI.Common
 {
     partial class NotificationUC
     {

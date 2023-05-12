@@ -1,4 +1,4 @@
-﻿namespace PAAD_Client.Administrator
+﻿namespace PAAD.HMI.Administrator
 {
     partial class AdminHeaderUC
     {

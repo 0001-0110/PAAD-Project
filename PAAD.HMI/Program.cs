@@ -1,7 +1,7 @@
-using PAAD_Client.Administrator;
-using PAAD_Client.Lecturer;
+using PAAD.HMI.Administrator;
+using PAAD.HMI.Lecturer;
 
-namespace PAAD_Client
+namespace PAAD.HMI
 {
     internal static class Program
     {

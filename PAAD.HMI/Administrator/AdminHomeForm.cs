@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PAAD_Client.Administrator
+namespace PAAD.HMI.Administrator
 {
     public partial class AdminHomeForm : Form
     {

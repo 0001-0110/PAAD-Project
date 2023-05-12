@@ -1,4 +1,4 @@
-﻿namespace PAAD_Client.Lecturer
+﻿namespace PAAD.HMI.Lecturer
 {
     partial class AddNotifForm
     {

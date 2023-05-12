@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PAAD_Client.Common
+namespace PAAD.HMI.Common
 {
     public partial class NotificationUC : UserControl
     {
