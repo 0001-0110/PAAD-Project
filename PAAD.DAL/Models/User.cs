@@ -7,7 +7,7 @@
         public string Email { get; set; }
 
         // TODO This might not be the right type
-        public string PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; }
 
         public virtual IEnumerable<Notification> Notifications { get; set; }
     }

@@ -1,9 +1,11 @@
-using PAAD.HMI;
 using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.DAL.Repositories;
-using PAAD.DAL.Models;
+using PAAD.BLL.Utilities;
 using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.Models;
+using PAAD.DAL.Repositories;
+using PAAD.HMI.Common;
+using System.Security.Cryptography;
 
 namespace PAAD
 {
@@ -27,12 +29,14 @@ namespace PAAD
                 .MapSingleton<IRepository<Administrator>, AdministratorRepository>()
                 .MapSingleton<IRepository<Course>, CourseRepository>()
                 .Map<IRepositoryCollection, RepositoryCollection>()
-                .Map<IDataService, DataService>();
+                .Map<IDataService, DataService>()
+                .MapSingleton<HashAlgorithm, SHA256>(SHA256.Create())
+                .MapSingleton<IAuthenticationService, AuthenticationService>();
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(injector.Instantiate<Form1>());
+            Application.Run(injector.Instantiate<LoginForm>());
         }
     }
 }
