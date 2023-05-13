@@ -1,8 +1,5 @@
-using PAAD.HMI.Administrator;
-using PAAD.HMI.Lecturer;
 using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.BLL.Utilities;
 using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Models;
 using PAAD.DAL.Repositories;
