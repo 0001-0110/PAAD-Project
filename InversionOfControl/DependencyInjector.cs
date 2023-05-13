@@ -107,7 +107,7 @@ namespace InversionOfControl
             return bestConstructor;
         }
 
-        private object? Instantiate(Type type, params (Type type, object? value)[] arguments)
+        private object? Instantiate(Type type, params (Type type, object value)[] arguments)
         {
             ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.type).ToArray());
             if (constructor == null)
@@ -127,44 +127,9 @@ namespace InversionOfControl
             return constructor?.Invoke(dependencies.Cast<object>().Concat(arguments.Select(argument => argument.value)).ToArray());
         }
 
-        public T? Instantiate<T>(params (Type type, object? value)[] arguments)
+        public T? Instantiate<T>(params object[] arguments)
         {
-            return (T?)Instantiate(typeof(T), arguments);
-        }
-
-        public T? Instantiate<T, Targ1>(Targ1 arg1)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2>(Targ1 arg1, Targ2 arg2)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2, Targ3>(Targ1 arg1, Targ2 arg2, Targ3 arg3)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2), (typeof(Targ3), arg3));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2, Targ3, Targ4>(Targ1 arg1, Targ2 arg2, Targ3 arg3, Targ4 arg4)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2), (typeof(Targ3), arg3), (typeof(Targ4), arg4));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2, Targ3, Targ4, Targ5>(Targ1 arg1, Targ2 arg2, Targ3 arg3, Targ4 arg4, Targ5 arg5)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2), (typeof(Targ3), arg3), (typeof(Targ4), arg4), (typeof(Targ5), arg5));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2, Targ3, Targ4, Targ5, Targ6>(Targ1 arg1, Targ2 arg2, Targ3 arg3, Targ4 arg4, Targ5 arg5, Targ6 arg6)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2), (typeof(Targ3), arg3), (typeof(Targ4), arg4), (typeof(Targ5), arg5), (typeof(Targ6), arg6));
-        }
-
-        public T? Instantiate<T, Targ1, Targ2, Targ3, Targ4, Targ5, Targ6, Targ7>(Targ1 arg1, Targ2 arg2, Targ3 arg3, Targ4 arg4, Targ5 arg5, Targ6 arg6, Targ7 arg7)
-        {
-            return Instantiate<T>((typeof(Targ1), arg1), (typeof(Targ2), arg2), (typeof(Targ3), arg3), (typeof(Targ4), arg4), (typeof(Targ5), arg5), (typeof(Targ6), arg6), (typeof(Targ7), arg7));
+            return (T?)Instantiate(typeof(T), arguments.Select<object, (Type, object)>(argument => (argument.GetType(), argument)).ToArray());
         }
     }
 }

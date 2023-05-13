@@ -10,6 +10,28 @@ namespace PAAD
 {
     internal static class Program
     {
+        private class Test
+        {
+            int? integer;
+            string? str;
+            DateTime? date;
+
+            public Test(int interger)
+            {
+                this.integer = interger;
+            }
+
+            public Test(string str)
+            {
+                this.str = str;
+            }
+
+            public Test(DateTime? date)
+            {
+                this.date = date;
+            }
+        }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
