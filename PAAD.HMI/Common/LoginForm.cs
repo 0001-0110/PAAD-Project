@@ -16,24 +16,24 @@ namespace PAAD.HMI.Common
             InitializeComponent();
         }
 
-        private void btnSubmitLogin_MouseClick(object sender, MouseEventArgs e)
+        private void btnSubmitLogin_Click(object sender, EventArgs e)
         {
-            if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
+            try
             {
-                lbError.Visible = true;
-                return;
+                if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
+                {
+                    lbError.Visible = true;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowError(ex.Message);
+                Environment.Exit(1);
             }
 
             // Authentication success
             CurrentUser = authenticationService.CurrentUser!;
-            Form mainForm;
-            if (CurrentUser is PAAD.DAL.Models.Administrator)
-                mainForm = new AdminHomeForm((DAL.Models.Administrator)CurrentUser);
-            else
-                mainForm = new LecturerViewNotifForm((DAL.Models.Lecturer)CurrentUser);
-
-            Hide();
-            mainForm.ShowDialog();
             Close();
         }
     }

@@ -90,7 +90,7 @@ namespace PAAD.HMI.Common
             btnSubmitLogin.TabIndex = 5;
             btnSubmitLogin.Text = "Submit";
             btnSubmitLogin.UseVisualStyleBackColor = false;
-            btnSubmitLogin.MouseClick += btnSubmitLogin_MouseClick;
+            btnSubmitLogin.Click += btnSubmitLogin_Click;
             // 
             // lbError
             // 
