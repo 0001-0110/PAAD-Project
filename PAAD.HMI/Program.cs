@@ -63,10 +63,13 @@ namespace PAAD
             LoginForm loginForm = injector.Instantiate<LoginForm>()!;
             Application.Run(loginForm);
 
-            if (loginForm.CurrentUser is Administrator)
-                Application.Run(injector.Instantiate<AdminHomeForm>((Administrator)loginForm.CurrentUser));
-            else
-                Application.Run(injector.Instantiate<LecturerViewNotifForm>((Lecturer)loginForm.CurrentUser));
+            if (loginForm.CurrentUser != null)
+            {
+                if (loginForm.CurrentUser is Administrator)
+                    Application.Run(injector.Instantiate<AdminHomeForm>((Administrator)loginForm.CurrentUser));
+                else
+                    Application.Run(injector.Instantiate<LecturerViewNotifForm>((Lecturer)loginForm.CurrentUser));
+            }
         }
     }
 }

@@ -115,6 +115,7 @@
             Margin = new Padding(2);
             Name = "AdminViewNotifForm";
             Text = "View Notifications";
+            Load += AdminViewNotifForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

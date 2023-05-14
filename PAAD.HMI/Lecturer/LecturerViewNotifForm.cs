@@ -34,10 +34,17 @@ namespace PAAD.HMI.Lecturer
             // TODO Replace by HeaderUC
             lbLecturerName.Text = $"{CurrentUser.FirstName} {CurrentUser.LastName}";
             lbCourseName.Text = CurrentUser.Course == null ? "" : CurrentUser.Course.Name;
-            if (CurrentUser.Notifications != null)
+            try
             {
-                foreach (Notification notification in CurrentUser.Notifications)
+                IEnumerable<Notification> notifications = 
+                    _dataService.GetAll<Notification>().Where(x => x.CourseId == CurrentUser.CourseId);
+                foreach (Notification notification in notifications)
                     flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowError(ex.Message);
+                Environment.Exit(1);
             }
         }
 

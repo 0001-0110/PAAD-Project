@@ -8,7 +8,7 @@ namespace PAAD.HMI.Common
     public partial class LoginForm : Form
     {
         private IAuthenticationService authenticationService;
-        public User CurrentUser;
+        public User? CurrentUser = null;
 
         public LoginForm(IAuthenticationService authenticationService)
         {
