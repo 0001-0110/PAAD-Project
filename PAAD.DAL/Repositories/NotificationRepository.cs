@@ -1,4 +1,5 @@
-﻿using PAAD.DAL.DatabaseContext;
+﻿using Microsoft.EntityFrameworkCore;
+using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Extensions;
 using PAAD.DAL.Models;
 
@@ -15,12 +16,12 @@ namespace PAAD.DAL.Repositories
 
         public override IEnumerable<Notification> GetAll()
         {
-            return dbContext.Notifications;
+            return dbContext.Notifications.Include("Author").Include("Course");
         }
 
         public override Notification? GetById(int id)
         {
-            return dbContext.Notifications.SingleOrDefault(notification => notification.Id == id);
+            return dbContext.Notifications.Include("Author").Include("Course").SingleOrDefault(notification => notification.Id == id);
         }
 
         public override void Create(Notification entity)
@@ -31,7 +32,7 @@ namespace PAAD.DAL.Repositories
 
         public override void Edit(int id, Notification edit)
         {
-            Notification notification = dbContext.Notifications.Single(notification => notification.Id == id);
+            Notification notification = dbContext.Notifications.Include("Author").Include("Course").Single(notification => notification.Id == id);
             notification.Edit(edit);
             dbContext.SaveChanges();
         }
