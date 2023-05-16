@@ -129,7 +129,7 @@ namespace InversionOfControl
 
         public T? Instantiate<T>(params object[] arguments)
         {
-            return (T?)Instantiate(typeof(T), arguments.Select<object, (Type, object)>(argument => (argument.GetType(), argument)).ToArray());
+            return (T?)Instantiate(typeof(T), arguments.Select(argument => (argument.GetType(), argument)).ToArray());
         }
     }
 }
