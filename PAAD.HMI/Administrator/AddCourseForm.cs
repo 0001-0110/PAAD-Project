@@ -12,9 +12,18 @@ namespace PAAD.HMI.Administrator
 {
     public partial class AddCourseForm : Form
     {
-        public AddCourseForm()
+        public AddCourseForm(string action)
         {
             InitializeComponent();
+            DisplayText(action);
         }
+
+		private void DisplayText(string action)
+		{
+			lbAction.Text = $"{action} course";
+		}
+
+		public string GetName()
+            => tbName.Text;
     }
 }
