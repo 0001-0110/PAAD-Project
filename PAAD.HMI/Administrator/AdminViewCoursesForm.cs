@@ -3,18 +3,10 @@ namespace PAAD.HMI.Administrator
 	public partial class AdminViewCoursesForm : Form
     {
 
-        /*
-         * Taille des colonnes:
-         * "Course name" (DataGridViewTextColumn): 600 
-         * "Edit" (DataGridViewButtonColumn): 273
-         * "Delete" (DataGridViewButtonColumn): 273
-         * 
-         * Taille des lignes: 50
-         * 
-         * A créer via code pour bien les initialiser.
-         */
+        
         private DAL.Models.Administrator CurrentUser;
 
+        [Obsolete]
         public AdminViewCoursesForm(DAL.Models.Administrator user)
         {
             InitializeComponent();

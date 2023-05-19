@@ -2,6 +2,7 @@
 
 namespace PAAD.HMI.Administrator
 {
+	[Obsolete]
 	public partial class AdminHomeForm : Form
 	{
 		private readonly IDependencyInjector _injector;

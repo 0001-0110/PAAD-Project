@@ -7,18 +7,18 @@ namespace PAAD.HMI.Administrator
 {
 	public partial class AdminViewCoursesUC : UserControl
 	{
-		private DAL.Models.Administrator CurrentUser;
+		IAuthenticationService _authenticationService;
 		private IDataService _dataService;
 		private IDependencyInjector _injector;
 		private const string EDIT = "Edit";
 		private const string DELETE = "Delete";
-		public AdminViewCoursesUC(IDependencyInjector injector, IDataService dataService, DAL.Models.Administrator user)
+		public AdminViewCoursesUC(IDependencyInjector injector, IDataService dataService, IAuthenticationService authenticationService)
 		{
 			_injector = injector;
 			_dataService = dataService;
 			InitializeComponent();
-			CurrentUser = user;
-			AddHeader(CurrentUser);
+			_authenticationService = authenticationService;
+			AddHeader((DAL.Models.Administrator)_authenticationService.CurrentUser!);
 		}
 
 		private void AddHeader(DAL.Models.Administrator user)
@@ -86,15 +86,13 @@ namespace PAAD.HMI.Administrator
 				var senderGrid = (DataGridView)sender;
 
 				var row = senderGrid.SelectedRows[0]; //we know there is only one max
-				if (row == null)
-					return;
 
-
-
+				string initialName = (string)row.Cells[0].Value;
 				AddCourseForm form = _injector.Instantiate<AddCourseForm>("Edit")!;
+				form.SetName(initialName);
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					string initialName = (string)row.Cells[0].Value;
+					
 					string newName = form.GetName();
 
 					//Edit the row and the database
@@ -138,7 +136,7 @@ namespace PAAD.HMI.Administrator
 		{
 			try
 			{
-				AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>(CurrentUser)!;
+				AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>()!;
 
 				adminHomeUC.Dock = DockStyle.Fill;
 

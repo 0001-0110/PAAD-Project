@@ -23,7 +23,7 @@ namespace PAAD.HMI.Common
 			User user = _authenticationService.CurrentUser!;
 			if(user is DAL.Models.Administrator)
 			{
-				AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>(user)!;
+				AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>()!;
 				adminHomeUC.Dock = DockStyle.Fill;
 
 				this.Controls.Add(adminHomeUC);

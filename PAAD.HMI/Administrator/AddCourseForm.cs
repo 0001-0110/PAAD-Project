@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace PAAD.HMI.Administrator
 {
-    public partial class AddCourseForm : Form
-    {
-        public AddCourseForm(string action)
-        {
-            InitializeComponent();
-            DisplayText(action);
-        }
+	public partial class AddCourseForm : Form
+	{
+		public AddCourseForm(string action)
+		{
+			InitializeComponent();
+			DisplayText(action);
+		}
 
 		private void DisplayText(string action)
 		{
@@ -24,6 +24,19 @@ namespace PAAD.HMI.Administrator
 		}
 
 		public string GetName()
-            => tbName.Text;
-    }
+			=> tbName.Text;
+
+		internal void SetName(string initialName)
+		{
+			tbName.Text = initialName;
+		}
+
+		private void btnSubmit_Click(object sender, EventArgs e)
+		{
+			if (tbName.Text == "")
+				Utils.ShowError("Course name should not be empty");
+			else
+				DialogResult = DialogResult.OK;
+		}
+	}
 }
