@@ -1,21 +1,12 @@
 using InversionOfControl;
-using Microsoft.VisualBasic.ApplicationServices;
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PAAD.HMI.Lecturer
 {
-    public partial class LecturerViewNotifForm : Form
+	public partial class LecturerViewNotifForm : Form
     {
         private readonly IDependencyInjector _injector;
         private readonly IDataService _dataService;
@@ -31,7 +22,6 @@ namespace PAAD.HMI.Lecturer
 
         private void LecturerViewNotifForm_Load(object sender, EventArgs e)
         {
-            // TODO Replace by HeaderUC
             lbLecturerName.Text = $"{CurrentUser.FirstName} {CurrentUser.LastName}";
             lbCourseName.Text = CurrentUser.Course == null ? "" : CurrentUser.Course.Name;
             try
@@ -53,7 +43,7 @@ namespace PAAD.HMI.Lecturer
 
         public void btnPost_Click(object sender, EventArgs e)
         {
-            AddNotifForm addNotifForm = new AddNotifForm();
+            AddNotifForm addNotifForm = _injector.Instantiate<AddNotifForm>()!;
             if (addNotifForm.ShowDialog() == DialogResult.OK)
             {
                 Notification notification = addNotifForm.GetNotification();

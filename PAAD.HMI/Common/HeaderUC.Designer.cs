@@ -1,6 +1,6 @@
-﻿namespace PAAD.HMI.Administrator
+﻿namespace PAAD.HMI.Common
 {
-	partial class AdminHeaderUC
+	partial class HeaderUC
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -37,11 +37,11 @@
 			// 
 			btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			btnLogout.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			btnLogout.Location = new Point(1144, 24);
+			btnLogout.Location = new Point(1159, 25);
 			btnLogout.Margin = new Padding(2, 4, 2, 4);
 			btnLogout.Name = "btnLogout";
 			btnLogout.Size = new Size(168, 66);
-			btnLogout.TabIndex = 14;
+			btnLogout.TabIndex = 17;
 			btnLogout.Text = "Log out";
 			btnLogout.UseVisualStyleBackColor = true;
 			btnLogout.Click += btnLogout_Click;
@@ -55,7 +55,7 @@
 			lbInfo.Margin = new Padding(2, 0, 2, 0);
 			lbInfo.Name = "lbInfo";
 			lbInfo.Size = new Size(158, 32);
-			lbInfo.TabIndex = 13;
+			lbInfo.TabIndex = 16;
 			lbInfo.Text = "Administrator";
 			// 
 			// lbLecturerName
@@ -67,10 +67,10 @@
 			lbLecturerName.Margin = new Padding(2, 0, 2, 0);
 			lbLecturerName.Name = "lbLecturerName";
 			lbLecturerName.Size = new Size(268, 32);
-			lbLecturerName.TabIndex = 12;
+			lbLecturerName.TabIndex = 15;
 			lbLecturerName.Text = "[First name] [Last name]";
 			// 
-			// AdminHeaderUC
+			// HeaderUC
 			// 
 			AutoScaleDimensions = new SizeF(10F, 25F);
 			AutoScaleMode = AutoScaleMode.Font;
@@ -78,9 +78,9 @@
 			Controls.Add(btnLogout);
 			Controls.Add(lbInfo);
 			Controls.Add(lbLecturerName);
-			Margin = new Padding(4, 4, 4, 4);
-			Name = "AdminHeaderUC";
-			Size = new Size(1375, 112);
+			Name = "HeaderUC";
+			Size = new Size(1390, 112);
+			Load += HeaderUC_Load;
 			ResumeLayout(false);
 			PerformLayout();
 		}

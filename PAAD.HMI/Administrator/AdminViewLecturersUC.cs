@@ -1,17 +1,7 @@
 ﻿using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.BLL.Utilities;
 using PAAD.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using PAAD.HMI.Common;
 
 namespace PAAD.HMI.Administrator
 {
@@ -30,14 +20,14 @@ namespace PAAD.HMI.Administrator
 			_injector = injector;
 			_dataService = dataService;
 
-			AddHeader((DAL.Models.Administrator)_authenticationService.CurrentUser!);
+			AddHeader();
 		}
 
-		private void AddHeader(DAL.Models.Administrator user)
+		private void AddHeader()
 		{
-			AdminHeaderUC headerUC = new AdminHeaderUC();
-			//HeaderUC headerUC = new HeaderUC(IDataService dataService)
-			headerUC.DisplayUser(user);
+			HeaderUC headerUC = _injector.Instantiate<HeaderUC>()!;
+			headerUC.Dock = DockStyle.Top;
+			Controls.Add(headerUC);
 		}
 
 		private void AdminViewLecturersUC_Load(object sender, EventArgs e)

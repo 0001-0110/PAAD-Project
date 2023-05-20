@@ -1,5 +1,6 @@
 ﻿using InversionOfControl;
 using PAAD.BLL.Services;
+using PAAD.HMI.Common;
 
 namespace PAAD.HMI.Administrator
 {
@@ -12,20 +13,27 @@ namespace PAAD.HMI.Administrator
 			InitializeComponent();
 			_injector = injector;
 			_authenticationService = authenticationService;
-			AddHeader((DAL.Models.Administrator)_authenticationService.CurrentUser!);
+			AddHeader();
 
 		}
 
-		private void AddHeader(DAL.Models.Administrator user)
+		private void AddHeader()
 		{
-			AdminHeaderUC headerUC = new AdminHeaderUC();
-			//HeaderUC headerUC = new HeaderUC(IDataService dataService)
-			headerUC.DisplayUser(user);
+			HeaderUC headerUC = _injector.Instantiate<HeaderUC>()!;
+			headerUC.Dock = DockStyle.Top;
+			Controls.Add(headerUC);
 		}
 
 		private void btnNotifs_Click(object sender, EventArgs e)
-			=> _injector.Instantiate<AdminViewNotifForm>()!.ShowDialog();
-		//	  =>  
+		//=> _injector.Instantiate<AdminViewNotifForm>()!.ShowDialog();
+		{
+			AdminViewNotifsUC adminViewNotifsUC = _injector.Instantiate<AdminViewNotifsUC>()!;
+			adminViewNotifsUC.Dock = DockStyle.Fill;
+
+			Parent.Controls.Add(adminViewNotifsUC);
+			Parent.Controls.Remove(this);
+			this.Dispose();
+		}
 
 		private void btnLecturers_Click(object sender, EventArgs e)
 		//=> new AdminViewLecturersForm().ShowDialog();

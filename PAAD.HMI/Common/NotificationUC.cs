@@ -1,34 +1,28 @@
-﻿using PAAD.BLL.Services;
+﻿using InversionOfControl;
+using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Lecturer;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PAAD.HMI.Common
 {
-    public partial class NotificationUC : UserControl
+	public partial class NotificationUC : UserControl
     {
         private readonly IDataService _dataService;
+        private readonly IDependencyInjector _injector;
         private Notification notification;
 
-        public NotificationUC(IDataService dataService, Notification notification)
+        public NotificationUC(IDataService dataService, IDependencyInjector injector, Notification notification)
         {
             InitializeComponent();
             _dataService = dataService;
+            _injector = injector;
             this.notification = notification;
         }
 
         private void NotificationUC_Load(object sender, EventArgs e)
         {
             lbTitle.Text = notification.Title;
-            lbAuthor.Text = $"{notification.Author.FirstName} {notification.Author.LastName}";
+            lbAuthor.Text = $"{notification.Author!.FirstName} {notification.Author.LastName}";
             lbDescription.Text = notification.Text;
             lbPublicationDate.Text = notification.PublishedDateTime.ToString("d");
             lbExpirationDate.Text = notification.ExpirationDateTime.ToString("d");
@@ -36,7 +30,7 @@ namespace PAAD.HMI.Common
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            AddNotifForm addNotifForm = new AddNotifForm(notification);
+            AddNotifForm addNotifForm = _injector.Instantiate<AddNotifForm>(notification)!;
             if (addNotifForm.ShowDialog() == DialogResult.OK)
             {
                 notification = addNotifForm.GetNotification();
@@ -49,7 +43,7 @@ namespace PAAD.HMI.Common
                     Utils.ShowError(ex.Message);
                     Environment.Exit(1);
                 }
-                NotificationUC_Load(null, null);
+                NotificationUC_Load(this, EventArgs.Empty);
             }
         }
 

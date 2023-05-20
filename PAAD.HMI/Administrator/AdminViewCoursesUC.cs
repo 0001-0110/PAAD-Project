@@ -18,14 +18,14 @@ namespace PAAD.HMI.Administrator
 			_dataService = dataService;
 			InitializeComponent();
 			_authenticationService = authenticationService;
-			AddHeader((DAL.Models.Administrator)_authenticationService.CurrentUser!);
+			AddHeader();
 		}
 
-		private void AddHeader(DAL.Models.Administrator user)
+		private void AddHeader()
 		{
-			AdminHeaderUC headerUC = new AdminHeaderUC();
-			//HeaderUC headerUC = new HeaderUC(IDataService dataService)
-			headerUC.DisplayUser(user);
+			HeaderUC headerUC = _injector.Instantiate<HeaderUC>()!;
+			headerUC.Dock = DockStyle.Top;
+			Controls.Add(headerUC);
 		}
 
 		private void AdminViewCoursesUC_Load(object sender, EventArgs e)

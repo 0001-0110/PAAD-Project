@@ -1,46 +1,40 @@
-﻿using PAAD.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using InversionOfControl;
+using PAAD.DAL.Models;
 
 namespace PAAD.HMI.Lecturer
 {
-    public partial class AddNotifForm : Form
-    {
-        private Notification Notification;
+	public partial class AddNotifForm : Form
+	{
+		private Notification Notification;
+		private readonly IDependencyInjector _injector;
 
-        // Add notification
-        public AddNotifForm()
-        {
-            InitializeComponent();
-            Notification = new Notification();
-        }
+		// Add notification
+		public AddNotifForm(IDependencyInjector injector)
+		{
+			_injector = injector;
+			InitializeComponent();
+			Notification = _injector.Instantiate<Notification>()!;
+		}
 
-        // Edit notification
-        public AddNotifForm(Notification notification) : this()
-        {
-            this.Notification = notification;
+		// Edit notification
+		public AddNotifForm(IDependencyInjector injector, Notification notification) : this(injector)
+		{
+			this.Notification = notification;
 
-            // Display the current notification's data
-            lbAction.Text = "Edit notification";
-            tbName.Text = Notification.Title;
-            tbExpirationDate.Text = Notification.ExpirationDateTime.ToString();
-            tbDescription.Text = Notification.Text;
-        }
+			// Display the current notification's data
+			lbAction.Text = "Edit notification";
+			tbName.Text = Notification.Title;
+			dateTimePicker_ExpirationDate.Value = Notification.ExpirationDateTime;
+			tbDescription.Text = Notification.Text;
+		}
 
-        public Notification GetNotification()
-        {
-            Notification.Title = tbName.Text;
-            Notification.ExpirationDateTime = DateTime.Parse(tbExpirationDate.Text);
-            Notification.Text = tbDescription.Text;
-            return Notification;
-        }
+		public Notification GetNotification()
+		{
+			Notification.Title = tbName.Text;
+			Notification.ExpirationDateTime = dateTimePicker_ExpirationDate.Value;
+			Notification.Text = tbDescription.Text;
+			return Notification;
+		}
 
-    }
+	}
 }

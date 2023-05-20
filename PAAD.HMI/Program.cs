@@ -38,17 +38,23 @@ namespace PAAD
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            LoginForm loginForm = injector.Instantiate<LoginForm>()!;
-            Application.Run(loginForm);
-
-            if (loginForm.CurrentUser != null)
-            {
-                if (loginForm.CurrentUser is Administrator)
-                    //Application.Run(injector.Instantiate<AdminHomeForm>((Administrator)loginForm.CurrentUser));
-                    Application.Run(injector.Instantiate<CommonForm>());
-                else
-                    Application.Run(injector.Instantiate<LecturerViewNotifForm>((Lecturer)loginForm.CurrentUser));
-            }
+            //To be able to logout and do all the process again
+            Restart(injector);
         }
+
+        public static void Restart(IDependencyInjector injector)
+        {
+			LoginForm loginForm = injector.Instantiate<LoginForm>()!;
+			Application.Run(loginForm);
+
+           
+
+			if (loginForm.CurrentUser != null)
+			{
+				Application.Run(injector.Instantiate<CommonForm>());
+                    
+                Restart(injector);
+            }
+		}
     }
 }

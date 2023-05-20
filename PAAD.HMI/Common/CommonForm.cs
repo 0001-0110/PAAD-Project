@@ -2,6 +2,7 @@
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Administrator;
+using PAAD.HMI.Lecturer;
 
 namespace PAAD.HMI.Common
 {
@@ -30,7 +31,10 @@ namespace PAAD.HMI.Common
 			}
 			else
 			{
-				MessageBox.Show("ups not implemented");
+				LecturerViewNotifsUC lecturerViewNotifsUC = _injector.Instantiate<LecturerViewNotifsUC>()!;
+				lecturerViewNotifsUC.Dock = DockStyle.Fill;
+
+				this.Controls.Add(lecturerViewNotifsUC);
 			}
 		}
 	}

@@ -7,6 +7,7 @@ using System.Data;
 
 namespace PAAD.HMI.Administrator
 {
+    [Obsolete]
 	public partial class AdminViewNotifForm : Form
     {
         private readonly IDependencyInjector _injector;
@@ -63,7 +64,7 @@ namespace PAAD.HMI.Administrator
         {
             if (cbCourses.SelectedItem == null)
                 return;
-            AddNotifForm addNotifForm = new AddNotifForm();
+            AddNotifForm addNotifForm = _injector.Instantiate<AddNotifForm>()!;
             if (addNotifForm.ShowDialog() == DialogResult.OK)
             {
                 Course currentCourse = (Course) cbCourses.SelectedItem;
