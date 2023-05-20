@@ -40,7 +40,7 @@ namespace PAAD.HMI.Administrator
 			lecturer.LastName = tbLastName.Text;
 			lecturer.CourseId = ((Course)cbCourses.SelectedItem).Id;
 			lecturer.Email = tbEmail.Text;
-			lecturer.PasswordHash = SecurityUtility.GetHash(tbPassword.Text, _hashAlgorithm);
+			lecturer.PasswordHash = _lecturer == null ? SecurityUtility.GetHash(tbPassword.Text, _hashAlgorithm) : _lecturer.PasswordHash;
 
 			return lecturer;
 		}
@@ -82,6 +82,7 @@ namespace PAAD.HMI.Administrator
 			tbFirstName.Text = lecturer.FirstName;
 			tbLastName.Text = lecturer.LastName;
 			tbEmail.Text = lecturer.Email;
+			tbPassword.Text = "/";
 
 			List<Course> courses = _dataService.GetAll<Course>().ToList();
 			courses.Sort((c1, c2) => string.Compare(c1.ToString(), c2.ToString()));
