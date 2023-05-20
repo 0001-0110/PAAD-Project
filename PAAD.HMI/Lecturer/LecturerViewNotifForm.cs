@@ -2,11 +2,12 @@ using InversionOfControl;
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
+using PAAD.HMI.Utilities;
 using System.Data;
 
 namespace PAAD.HMI.Lecturer
 {
-	public partial class LecturerViewNotifForm : Form
+    public partial class LecturerViewNotifForm : Form
     {
         private readonly IDependencyInjector _injector;
         private readonly IDataService _dataService;
@@ -33,7 +34,7 @@ namespace PAAD.HMI.Lecturer
             }
             catch (Exception ex)
             {
-                Utils.ShowError(ex.Message);
+                MessageBoxUtility.ShowError(ex.Message);
                 Environment.Exit(1);
             }
         }
@@ -55,7 +56,7 @@ namespace PAAD.HMI.Lecturer
                 }
                 catch (Exception ex)
                 {
-                    Utils.ShowError(ex.Message);
+                    MessageBoxUtility.ShowError(ex.Message);
                     Environment.Exit(1);
                 }
                 flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));

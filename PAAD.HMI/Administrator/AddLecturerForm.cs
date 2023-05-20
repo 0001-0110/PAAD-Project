@@ -1,13 +1,13 @@
 ﻿using InversionOfControl;
-using Microsoft.VisualBasic.Devices;
 using PAAD.BLL.Services;
 using PAAD.BLL.Utilities;
 using PAAD.DAL.Models;
+using PAAD.HMI.Utilities;
 using System.Security.Cryptography;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AddLecturerForm : Form
+    public partial class AddLecturerForm : Form
 	{
 		private readonly IDependencyInjector _injector;
 		private readonly IDataService _dataService;
@@ -64,7 +64,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -72,7 +72,7 @@ namespace PAAD.HMI.Administrator
 		private void btnSubmit_Click(object sender, EventArgs e)
 		{
 			if (tbFirstName.Text == "" || tbLastName.Text == "" || tbEmail.Text == "" || tbPassword.Text == "")
-				Utils.ShowError("One or more fields are empty. Please fill all of them.");
+				MessageBoxUtility.ShowError("One or more fields are empty. Please fill all of them.");
 			else
 				DialogResult = DialogResult.OK;
 		}

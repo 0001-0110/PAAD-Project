@@ -2,10 +2,11 @@
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
+using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AdminViewLecturersUC : UserControl
+    public partial class AdminViewLecturersUC : UserControl
 	{
 		private readonly IDataService _dataService;
 		private readonly IDependencyInjector _injector;
@@ -45,7 +46,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -83,7 +84,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -121,7 +122,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -155,7 +156,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}

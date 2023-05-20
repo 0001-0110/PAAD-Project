@@ -8,13 +8,13 @@ namespace PAAD.HMI.Administrator
 	{
 		private readonly IDependencyInjector _injector;
 		private readonly IAuthenticationService _authenticationService;
+
 		public AdminHomeUC(IDependencyInjector injector, IAuthenticationService authenticationService)
 		{
-			InitializeComponent();
 			_injector = injector;
 			_authenticationService = authenticationService;
+			InitializeComponent();
 			AddHeader();
-
 		}
 
 		private void AddHeader()
@@ -32,7 +32,7 @@ namespace PAAD.HMI.Administrator
 
 			Parent.Controls.Add(adminViewNotifsUC);
 			Parent.Controls.Remove(this);
-			this.Dispose();
+			Dispose();
 		}
 
 		private void btnLecturers_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace PAAD.HMI.Administrator
 			Parent.Controls.Add(adminViewLecturersUC);
 			Parent.Controls.Remove(this);
 
-			this.Dispose();
+			Dispose();
 		}
 
 		private void btnCourses_Click(object sender, EventArgs e)
@@ -56,8 +56,7 @@ namespace PAAD.HMI.Administrator
 			Parent.Controls.Add(adminViewCoursesUC);
 			Parent.Controls.Remove(this);
 
-			this.Dispose();
+			Dispose();
 		}
 	}
 }
-

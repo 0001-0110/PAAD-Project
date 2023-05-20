@@ -2,10 +2,11 @@
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Lecturer;
+using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Common
 {
-	public partial class NotificationUC : UserControl
+    public partial class NotificationUC : UserControl
     {
         private readonly IDataService _dataService;
         private readonly IDependencyInjector _injector;
@@ -40,7 +41,7 @@ namespace PAAD.HMI.Common
                 }
                 catch (Exception ex) 
                 {
-                    Utils.ShowError(ex.Message);
+                    MessageBoxUtility.ShowError(ex.Message);
                     Environment.Exit(1);
                 }
                 NotificationUC_Load(this, EventArgs.Empty);
@@ -57,7 +58,7 @@ namespace PAAD.HMI.Common
                 }
                 catch (Exception ex)
                 {
-                    Utils.ShowError(ex.Message);
+                    MessageBoxUtility.ShowError(ex.Message);
                     Environment.Exit(1);
                 }
                 Parent.Controls.Remove(this);

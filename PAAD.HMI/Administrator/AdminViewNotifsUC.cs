@@ -3,14 +3,16 @@ using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
 using PAAD.HMI.Lecturer;
+using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AdminViewNotifsUC : UserControl
+    public partial class AdminViewNotifsUC : UserControl
 	{
 		private readonly IDataService _dataService;
 		private readonly IDependencyInjector _injector;
 		private readonly IAuthenticationService _authenticationService;
+
 		public AdminViewNotifsUC(IDataService dataService, IDependencyInjector injector, IAuthenticationService authenticationService)
 		{
 			_dataService = dataService;
@@ -39,7 +41,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -68,7 +70,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -90,7 +92,7 @@ namespace PAAD.HMI.Administrator
 				}
 				catch (Exception ex)
 				{
-					Utils.ShowError(ex.Message);
+					MessageBoxUtility.ShowError(ex.Message);
 					Environment.Exit(1);
 				}
 				flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));

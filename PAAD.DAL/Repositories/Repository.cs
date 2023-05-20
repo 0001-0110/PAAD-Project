@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PAAD.DAL.DatabaseContext;
+﻿using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories

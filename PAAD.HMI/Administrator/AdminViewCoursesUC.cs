@@ -2,17 +2,19 @@
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
+using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AdminViewCoursesUC : UserControl
+    public partial class AdminViewCoursesUC : UserControl
 	{
-		IAuthenticationService _authenticationService;
-		private IDataService _dataService;
 		private IDependencyInjector _injector;
+		private IDataService _dataService;
+		IAuthenticationService _authenticationService;
 		private const string EDIT = "Edit";
 		private const string DELETE = "Delete";
-		public AdminViewCoursesUC(IDependencyInjector injector, IDataService dataService, IAuthenticationService authenticationService)
+
+		public AdminViewCoursesUC(IDependencyInjector injector, IAuthenticationService authenticationService, IDataService dataService)
 		{
 			_injector = injector;
 			_dataService = dataService;
@@ -40,7 +42,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -74,7 +76,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}
@@ -111,7 +113,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 
@@ -147,7 +149,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 
@@ -175,7 +177,7 @@ namespace PAAD.HMI.Administrator
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowError(ex.Message);
+				MessageBoxUtility.ShowError(ex.Message);
 				Environment.Exit(1);
 			}
 		}

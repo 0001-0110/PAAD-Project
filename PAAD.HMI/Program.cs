@@ -3,9 +3,7 @@ using PAAD.BLL.Services;
 using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Models;
 using PAAD.DAL.Repositories;
-using PAAD.HMI.Administrator;
 using PAAD.HMI.Common;
-using PAAD.HMI.Lecturer;
 using System.Security.Cryptography;
 
 namespace PAAD
@@ -37,24 +35,7 @@ namespace PAAD
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            //To be able to logout and do all the process again
-            Restart(injector);
+			Application.Run(injector.Instantiate<LoginForm>());
         }
-
-        public static void Restart(IDependencyInjector injector)
-        {
-			LoginForm loginForm = injector.Instantiate<LoginForm>()!;
-			Application.Run(loginForm);
-
-           
-
-			if (loginForm.CurrentUser != null)
-			{
-				Application.Run(injector.Instantiate<CommonForm>());
-                    
-                Restart(injector);
-            }
-		}
     }
 }

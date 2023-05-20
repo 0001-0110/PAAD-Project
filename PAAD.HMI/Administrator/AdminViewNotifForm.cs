@@ -3,6 +3,7 @@ using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Common;
 using PAAD.HMI.Lecturer;
+using PAAD.HMI.Utilities;
 using System.Data;
 
 namespace PAAD.HMI.Administrator
@@ -33,7 +34,7 @@ namespace PAAD.HMI.Administrator
             }
             catch(Exception ex)
             {
-                Utils.ShowError(ex.Message);
+                MessageBoxUtility.ShowError(ex.Message);
                 Environment.Exit(1);
             }
         }
@@ -55,7 +56,7 @@ namespace PAAD.HMI.Administrator
             }
             catch (Exception ex)
             {
-                Utils.ShowError(ex.Message);
+                MessageBoxUtility.ShowError(ex.Message);
                 Environment.Exit(1);
             }
         }
@@ -77,7 +78,7 @@ namespace PAAD.HMI.Administrator
                 }
                 catch (Exception ex)
                 {
-                    Utils.ShowError(ex.Message);
+                    MessageBoxUtility.ShowError(ex.Message);
                     Environment.Exit(1);
                 }
                 flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));

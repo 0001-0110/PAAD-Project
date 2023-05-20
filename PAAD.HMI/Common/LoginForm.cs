@@ -1,40 +1,49 @@
+using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.DAL.Models;
-using PAAD.HMI.Administrator;
-using PAAD.HMI.Lecturer;
 
 namespace PAAD.HMI.Common
 {
     public partial class LoginForm : Form
     {
+        private IDependencyInjector injector;
         private IAuthenticationService authenticationService;
-        public User? CurrentUser = null;
+        private Form? homeForm;
 
-        public LoginForm(IAuthenticationService authenticationService)
+        public LoginForm(IDependencyInjector injector,IAuthenticationService authenticationService)
         {
+            this.injector = injector;
             this.authenticationService = authenticationService;
+            authenticationService.OnLogOut += ShowLogin;
             InitializeComponent();
+        }
+
+        private void ShowLogin()
+        {
+            homeForm!.FormClosed -= OnClose;
+            lbError.Hide();
+            tbEmail.Text = string.Empty;
+            tbPassword.Text = string.Empty;
+            Show();
+        }
+
+        private void OnClose(object? sender, FormClosedEventArgs args)
+        {
+            Close();
         }
 
         private void btnSubmitLogin_Click(object sender, EventArgs e)
         {
-            try
+            if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
             {
-                if (!authenticationService.TryAuthenticate(tbEmail.Text, tbPassword.Text))
-                {
-                    lbError.Visible = true;
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex.Message);
-                Environment.Exit(1);
+                lbError.Show();
+                return;
             }
 
-            // Authentication success
-            CurrentUser = authenticationService.CurrentUser!;
-            Close();
+            Hide();
+            // Show the main form
+            homeForm = injector.Instantiate<CommonForm>()!;
+            homeForm.Show();
+            homeForm.FormClosed += OnClose;
         }
     }
 }
