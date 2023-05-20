@@ -1,13 +1,11 @@
-﻿using System.Dynamic;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace SkillIssueDetector.Utilities
 {
     internal static class ReflectionUtility
     {
-        /*public static object? CallPrivate(object instance, string methodName, params object?[] arguments)
+        public static object? CallPrivate(object instance, string methodName, params object?[] arguments)
         {
-            var test = instance.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
             return instance.GetType()
                 .GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance)?
                 .Invoke(instance, arguments);
@@ -20,6 +18,6 @@ namespace SkillIssueDetector.Utilities
                 .GetMethod(methodName)?
                 .MakeGenericMethod(types)
                 .Invoke(_instance, arguments);
-        }*/
+        }
     }
 }

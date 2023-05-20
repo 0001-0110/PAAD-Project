@@ -86,7 +86,7 @@ namespace InversionOfControl
             // We start at -1 so that constructor without arguments are not considered ambiguous
             int bestConstructorParameterCount = -1;
 
-            foreach (ConstructorInfo constructor in type.GetConstructors())
+            foreach (ConstructorInfo constructor in type.GetConstructors(BindingFlags.Public | BindingFlags.Instance))
             {
                 int parameterCount = constructor.GetParameters().Length;
                 // If the current best constructor has more parameters than this one, we can skip it
@@ -107,9 +107,9 @@ namespace InversionOfControl
             return bestConstructor;
         }
 
-        private object? Instantiate(Type type, params (Type type, object value)[] arguments)
+        private object? Instantiate(Type type, params object[] arguments)
         {
-            ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.type).ToArray());
+            ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.GetType()).ToArray());
             if (constructor == null)
                 // HOW TO FIX :
                 // 1. Check that the object you are trying to instantiate has a public constructor
@@ -124,12 +124,12 @@ namespace InversionOfControl
             IEnumerable<object?> dependencies = constructor.GetParameters().Take(dependencyCount).Select(parameter => GetInstance(parameter.ParameterType));
 
             // Invoke the constructor with all the dependencies followed by all the given arguments
-            return constructor?.Invoke(dependencies.Cast<object>().Concat(arguments.Select(argument => argument.value)).ToArray());
+            return constructor?.Invoke(dependencies.Cast<object>().Concat(arguments).ToArray());
         }
 
         public T? Instantiate<T>(params object[] arguments)
         {
-            return (T?)Instantiate(typeof(T), arguments.Select(argument => (argument.GetType(), argument)).ToArray());
+            return (T?)Instantiate(typeof(T), arguments);
         }
     }
 }
