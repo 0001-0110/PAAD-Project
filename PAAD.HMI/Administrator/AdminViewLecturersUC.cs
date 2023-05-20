@@ -135,7 +135,7 @@ namespace PAAD.HMI.Administrator
 
 				var row = senderGrid.SelectedRows[0]; //we know there is only one max
 
-				var lecturer = _dataService.GetAll<DAL.Models.Lecturer>().FirstOrDefault(l => $"{l.FirstName} {l.LastName}" == row.Cells[0].Value.ToString())!;
+				DAL.Models.Lecturer lecturer = _dataService.GetAll<DAL.Models.Lecturer>().FirstOrDefault(l => $"{l.FirstName} {l.LastName}" == row.Cells[0].Value.ToString())!;
 				var id = lecturer.Id;
 
 				AddLecturerForm addLecturerForm = _injector.Instantiate<AddLecturerForm>("Edit", lecturer)!;
@@ -146,6 +146,8 @@ namespace PAAD.HMI.Administrator
 
 					//update database
 					_dataService.Edit<DAL.Models.Lecturer>(id, lecturer);
+
+					lecturer = _dataService.GetAll<DAL.Models.Lecturer>()!.Single(l => $"{l.FirstName} {l.LastName}" == $"{lecturer.FirstName} {lecturer.LastName}");
 
 					//update table
 					row.Cells[0].Value = $"{lecturer.FirstName} {lecturer.LastName}";
