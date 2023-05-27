@@ -22,7 +22,7 @@ namespace PAAD.DAL.Repositories
 
         public virtual bool IdExists(int id)
         {
-            return dbContext.Administrators.Any(administrator => administrator.Id == id);
+            return Values.Any(administrator => administrator.Id == id);
         }
 
         public virtual IEnumerable<T> GetAll()
