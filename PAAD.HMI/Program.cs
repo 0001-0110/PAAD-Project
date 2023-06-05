@@ -22,7 +22,7 @@ namespace PAAD
             // The second argument should be inheriting of the first argument
             DependencyInjector injector = new DependencyInjector()
                 .MapSingleton<AufgepasstDbContext, AufgepasstDbContext>()
-                .MapSingleton<IRepository<Notification>, Repository<Notification>>()
+                .MapSingleton<IRepository<Notification>, NotificationRepository>()
                 //.Map<IRepository<Student>, Repository<Student>>()
                 .MapSingleton<IRepository<Lecturer>, Repository<Lecturer>>()
                 .MapSingleton<IRepository<Administrator>, Repository<Administrator>>()
