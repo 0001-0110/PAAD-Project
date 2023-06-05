@@ -25,35 +25,19 @@ namespace PAAD.HMI.Administrator
 		}
 
 		private void btnNotifs_Click(object sender, EventArgs e)
-		//=> _injector.Instantiate<AdminViewNotifForm>()!.ShowDialog();
-		{
-			AdminViewNotifsUC adminViewNotifsUC = _injector.Instantiate<AdminViewNotifsUC>()!;
-			adminViewNotifsUC.Dock = DockStyle.Fill;
-
-			Parent.Controls.Add(adminViewNotifsUC);
-			Parent.Controls.Remove(this);
-			Dispose();
-		}
+			=> showUC(_injector.Instantiate<AdminViewNotifsUC>()!);
 
 		private void btnLecturers_Click(object sender, EventArgs e)
-		//=> new AdminViewLecturersForm().ShowDialog();
-		{
-			AdminViewLecturersUC adminViewLecturersUC = _injector.Instantiate<AdminViewLecturersUC>()!;
-			adminViewLecturersUC.Dock = DockStyle.Fill;
-
-			Parent.Controls.Add(adminViewLecturersUC);
-			Parent.Controls.Remove(this);
-
-			Dispose();
-		}
+			=> showUC(_injector.Instantiate<AdminViewLecturersUC>()!);
 
 		private void btnCourses_Click(object sender, EventArgs e)
-		//=> new AdminViewCoursesForm(CurrentUser).ShowDialog();
-		{
-			AdminViewCoursesUC adminViewCoursesUC = _injector.Instantiate<AdminViewCoursesUC>()!;
-			adminViewCoursesUC.Dock = DockStyle.Fill;
+			=> showUC(_injector.Instantiate<AdminViewCoursesUC>()!);
 
-			Parent.Controls.Add(adminViewCoursesUC);
+		private void showUC(UserControl userControl)
+		{
+			userControl.Dock = DockStyle.Fill;
+
+			Parent.Controls.Add(userControl);
 			Parent.Controls.Remove(this);
 
 			Dispose();

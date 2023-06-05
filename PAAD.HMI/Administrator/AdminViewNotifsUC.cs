@@ -7,7 +7,7 @@ using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-    public partial class AdminViewNotifsUC : UserControl
+	public partial class AdminViewNotifsUC : UserControl
 	{
 		private readonly IDataService _dataService;
 		private readonly IDependencyInjector _injector;
@@ -31,21 +31,12 @@ namespace PAAD.HMI.Administrator
 
 		private void AdminViewNotifsUC_Load(object sender, EventArgs e)
 		{
-			try
-			{
-				IEnumerable<Course> courses = _dataService.GetAll<Course>();
-				foreach (Course course in courses)
-					cbCourses.Items.Add(course);
-				if(cbCourses.Items.Count > 0)
-					cbCourses.SelectedIndex = 0;
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
+			IEnumerable<Course> courses = _dataService.GetAll<Course>();
+			foreach (Course course in courses)
+				cbCourses.Items.Add(course);
+			if (cbCourses.Items.Count > 0)
+				cbCourses.SelectedIndex = 0;
 		}
-
 
 		private void btnBack_Click(object sender, EventArgs e)
 		{
@@ -61,18 +52,11 @@ namespace PAAD.HMI.Administrator
 			flpNotificationsContainer.Controls.Clear();
 			if (cbCourses.SelectedItem == null)
 				return;
-			try
-			{
-				Course currentCourse = (Course)cbCourses.SelectedItem;
-				IEnumerable<Notification> notifications = _dataService.GetAll<Notification>().Where(x => x.CourseId == currentCourse.Id);
-				foreach (Notification notification in notifications)
-					flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
+
+			Course currentCourse = (Course)cbCourses.SelectedItem;
+			IEnumerable<Notification> notifications = _dataService.GetAll<Notification>().Where(x => x.CourseId == currentCourse.Id);
+			foreach (Notification notification in notifications)
+				flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 		}
 
 		private void btnPost_Click(object sender, EventArgs e)
@@ -89,16 +73,14 @@ namespace PAAD.HMI.Administrator
 				try
 				{
 					_dataService.Create<Notification>(notification);
+					flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 				}
 				catch (Exception ex)
 				{
 					MessageBoxUtility.ShowError(ex.Message);
 					Environment.Exit(1);
 				}
-				flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 			}
 		}
-
-		
 	}
 }

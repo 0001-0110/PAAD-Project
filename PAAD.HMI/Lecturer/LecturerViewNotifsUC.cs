@@ -6,13 +6,13 @@ using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Lecturer
 {
-    public partial class LecturerViewNotifsUC : UserControl
+	public partial class LecturerViewNotifsUC : UserControl
 	{
 		private readonly IDependencyInjector _injector;
 		private readonly IAuthenticationService _authenticationService;
 		private DAL.Models.Lecturer currentUser;
 		private readonly IDataService _dataService;
-		
+
 		public LecturerViewNotifsUC(IDependencyInjector injector, IAuthenticationService authenticationService, IDataService dataService)
 		{
 			_injector = injector;
@@ -32,19 +32,10 @@ namespace PAAD.HMI.Lecturer
 
 		private void LecturerViewNotifsUC_Load(object sender, EventArgs e)
 		{
-			// TODO Why is this thing inside a try catch ? Can it even fail ?
-			try
-			{
-				IEnumerable<Notification> notifications =
+			IEnumerable<Notification> notifications =
 					_dataService.GetAll<Notification>().Where(x => x.CourseId == currentUser.CourseId);
-				foreach (Notification notification in notifications)
-					flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
+			foreach (Notification notification in notifications)
+				flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 		}
 
 		private void btnPost_Click(object sender, EventArgs e)
@@ -58,13 +49,13 @@ namespace PAAD.HMI.Lecturer
 				try
 				{
 					_dataService.Create<Notification>(notification);
+					flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 				}
 				catch (Exception ex)
 				{
 					MessageBoxUtility.ShowError(ex.Message);
 					Environment.Exit(1);
 				}
-				flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
 			}
 		}
 	}

@@ -32,10 +32,12 @@
 			// 
 			// CommonForm
 			// 
-			AutoScaleDimensions = new SizeF(10F, 25F);
+			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(1390, 844);
+			ClientSize = new Size(1112, 675);
+			Margin = new Padding(2, 2, 2, 2);
 			Name = "CommonForm";
+			StartPosition = FormStartPosition.CenterParent;
 			Text = "Aufgepasst";
 			ResumeLayout(false);
 		}

@@ -23,7 +23,10 @@ namespace PAAD.HMI.Common
         private void NotificationUC_Load(object sender, EventArgs e)
         {
             lbTitle.Text = notification.Title;
-            lbAuthor.Text = $"{notification.Author!.FirstName} {notification.Author.LastName}";
+            if (notification.Author != null)
+                lbAuthor.Text = $"{notification.Author!.FirstName} {notification.Author.LastName}";
+            else
+                lbAuthor.Text = "Deleted user";
             lbDescription.Text = notification.Text;
             lbPublicationDate.Text = notification.PublishedDateTime.ToString("d");
             lbExpirationDate.Text = notification.ExpirationDateTime.ToString("d");
@@ -35,15 +38,7 @@ namespace PAAD.HMI.Common
             if (addNotifForm.ShowDialog() == DialogResult.OK)
             {
                 notification = addNotifForm.GetNotification();
-                try
-                {
-                    _dataService.Edit<Notification>(notification.Id, notification);
-                }
-                catch (Exception ex) 
-                {
-                    MessageBoxUtility.ShowError(ex.Message);
-                    Environment.Exit(1);
-                }
+                _dataService.Edit<Notification>(notification.Id, notification);
                 NotificationUC_Load(this, EventArgs.Empty);
             }
         }
@@ -52,15 +47,7 @@ namespace PAAD.HMI.Common
         {
             if(new ConfirmationForm().ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    _dataService.Delete<Notification>(notification.Id);
-                }
-                catch (Exception ex)
-                {
-                    MessageBoxUtility.ShowError(ex.Message);
-                    Environment.Exit(1);
-                }
+                _dataService.Delete<Notification>(notification.Id);
                 Parent.Controls.Remove(this);
             }
         }

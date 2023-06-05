@@ -40,27 +40,30 @@
 			// 
 			label1.AutoSize = true;
 			label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-			label1.Location = new Point(312, 31);
+			label1.Location = new Point(250, 25);
+			label1.Margin = new Padding(2, 0, 2, 0);
 			label1.Name = "label1";
-			label1.Size = new Size(0, 38);
+			label1.Size = new Size(0, 32);
 			label1.TabIndex = 0;
 			// 
 			// lbAction
 			// 
 			lbAction.AutoSize = true;
 			lbAction.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-			lbAction.Location = new Point(204, 30);
+			lbAction.Location = new Point(163, 24);
+			lbAction.Margin = new Padding(2, 0, 2, 0);
 			lbAction.Name = "lbAction";
-			lbAction.Size = new Size(208, 38);
+			lbAction.Size = new Size(178, 32);
 			lbAction.TabIndex = 1;
 			lbAction.Text = "[Action] course";
 			// 
 			// lbName
 			// 
 			lbName.AutoSize = true;
-			lbName.Location = new Point(51, 139);
+			lbName.Location = new Point(41, 111);
+			lbName.Margin = new Padding(2, 0, 2, 0);
 			lbName.Name = "lbName";
-			lbName.Size = new Size(63, 25);
+			lbName.Size = new Size(52, 20);
 			lbName.TabIndex = 2;
 			lbName.Text = "Name:";
 			// 
@@ -70,20 +73,20 @@
 			btnCancel.DialogResult = DialogResult.Cancel;
 			btnCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
 			btnCancel.ForeColor = SystemColors.ButtonHighlight;
-			btnCancel.Location = new Point(371, 300);
-			btnCancel.Margin = new Padding(3, 4, 3, 4);
+			btnCancel.Location = new Point(297, 240);
+			btnCancel.Margin = new Padding(2, 3, 2, 3);
 			btnCancel.Name = "btnCancel";
-			btnCancel.Size = new Size(179, 54);
+			btnCancel.Size = new Size(143, 43);
 			btnCancel.TabIndex = 3;
 			btnCancel.Text = "Cancel";
 			btnCancel.UseVisualStyleBackColor = false;
 			// 
 			// tbName
 			// 
-			tbName.Location = new Point(51, 181);
-			tbName.Margin = new Padding(3, 4, 3, 4);
+			tbName.Location = new Point(41, 145);
+			tbName.Margin = new Padding(2, 3, 2, 3);
 			tbName.Name = "tbName";
-			tbName.Size = new Size(515, 31);
+			tbName.Size = new Size(413, 27);
 			tbName.TabIndex = 4;
 			// 
 			// btnSubmit
@@ -91,10 +94,10 @@
 			btnSubmit.BackColor = SystemColors.Highlight;
 			btnSubmit.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
 			btnSubmit.ForeColor = SystemColors.ButtonHighlight;
-			btnSubmit.Location = new Point(70, 300);
-			btnSubmit.Margin = new Padding(3, 4, 3, 4);
+			btnSubmit.Location = new Point(56, 240);
+			btnSubmit.Margin = new Padding(2, 3, 2, 3);
 			btnSubmit.Name = "btnSubmit";
-			btnSubmit.Size = new Size(179, 54);
+			btnSubmit.Size = new Size(143, 43);
 			btnSubmit.TabIndex = 5;
 			btnSubmit.Text = "Submit";
 			btnSubmit.UseVisualStyleBackColor = false;
@@ -102,17 +105,18 @@
 			// 
 			// AddCourseForm
 			// 
-			AutoScaleDimensions = new SizeF(10F, 25F);
+			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(616, 418);
+			ClientSize = new Size(493, 334);
 			Controls.Add(btnSubmit);
 			Controls.Add(tbName);
 			Controls.Add(btnCancel);
 			Controls.Add(lbName);
 			Controls.Add(lbAction);
 			Controls.Add(label1);
-			Margin = new Padding(3, 4, 3, 4);
+			Margin = new Padding(2, 3, 2, 3);
 			Name = "AddCourseForm";
+			StartPosition = FormStartPosition.CenterParent;
 			Text = "Add course";
 			ResumeLayout(false);
 			PerformLayout();

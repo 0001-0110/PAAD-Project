@@ -7,12 +7,13 @@ using System.Security.Cryptography;
 
 namespace PAAD.HMI.Administrator
 {
-    public partial class AddLecturerForm : Form
+	public partial class AddLecturerForm : Form
 	{
 		private readonly IDependencyInjector _injector;
 		private readonly IDataService _dataService;
 		private readonly HashAlgorithm _hashAlgorithm;
-		private DAL.Models.Lecturer _lecturer = null;
+		private DAL.Models.Lecturer dbLecturer = null;
+
 		public AddLecturerForm(IDependencyInjector injector, IDataService dataService, HashAlgorithm hashAlgorithm, string action)
 		{
 			_injector = injector;
@@ -24,7 +25,19 @@ namespace PAAD.HMI.Administrator
 
 		public AddLecturerForm(IDependencyInjector injector, IDataService dataService, HashAlgorithm hashAlgorithm, string action, DAL.Models.Lecturer lecturer) : this(injector, dataService, hashAlgorithm, action)
 		{
-			_lecturer = lecturer;
+			dbLecturer = lecturer;
+		}
+		
+		private void AddLecturerForm_Load(object sender, EventArgs e)
+		{
+			IEnumerable<Course> courses = _dataService.GetAll<Course>();
+			foreach (Course course in courses)
+				cbCourses.Items.Add(course);
+
+			if (dbLecturer != null)
+				SetData(dbLecturer);
+			else
+				cbCourses.SelectedIndex = 0;
 		}
 
 		private void UpdateAction(string action)
@@ -32,48 +45,26 @@ namespace PAAD.HMI.Administrator
 			lbTitle.Text = $"{action} lecturer";
 		}
 
+		// Used to retrieve infos from the AdminViewLecturer
 		public DAL.Models.Lecturer GetData()
 		{
-			DAL.Models.Lecturer lecturer = _injector.Instantiate<DAL.Models.Lecturer>()!;
+			if(dbLecturer == null)
+				dbLecturer = _injector.Instantiate<DAL.Models.Lecturer>()!;
+			dbLecturer.FirstName = tbFirstName.Text;
+			dbLecturer.LastName = tbLastName.Text;
+			dbLecturer.CourseId = ((Course)cbCourses.SelectedItem).Id;
+			dbLecturer.Course = (Course)cbCourses.SelectedItem;
+			dbLecturer.Email = tbEmail.Text;
+			// Add a lecturer with empty password manage in submit button
+			if(tbPassword.Text != "")
+				dbLecturer.PasswordHash = SecurityUtility.GetHash(tbPassword.Text, _hashAlgorithm);
 
-			// Was this the best way to do it ?
-			lecturer.FirstName = tbFirstName.Text;
-			lecturer.LastName = tbLastName.Text;
-			lecturer.CourseId = ((Course)cbCourses.SelectedItem).Id;
-			lecturer.Course = (Course)cbCourses.SelectedItem;
-			lecturer.Email = tbEmail.Text;
-			lecturer.PasswordHash = _lecturer == null ? SecurityUtility.GetHash(tbPassword.Text, _hashAlgorithm) : _lecturer.PasswordHash;
-
-			return lecturer;
-		}
-
-		private void AddLecturerForm_Load(object sender, EventArgs e)
-		{
-			try
-			{
-				IEnumerable<Course> courses = _dataService.GetAll<Course>();
-				foreach (Course course in courses)
-				{
-					cbCourses.Items.Add(course);
-				}
-
-				if (_lecturer != null)
-					SetData(_lecturer);
-				else
-					cbCourses.SelectedIndex = 0;
-
-
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
+			return dbLecturer;
 		}
 
 		private void btnSubmit_Click(object sender, EventArgs e)
 		{
-			if (tbFirstName.Text == "" || tbLastName.Text == "" || tbEmail.Text == "" || tbPassword.Text == "")
+			if (tbFirstName.Text == "" || tbLastName.Text == "" || tbEmail.Text == "" || (tbPassword.Text == "" && dbLecturer == null))
 				MessageBoxUtility.ShowError("One or more fields are empty. Please fill all of them.");
 			else
 				DialogResult = DialogResult.OK;
@@ -84,13 +75,12 @@ namespace PAAD.HMI.Administrator
 			tbFirstName.Text = lecturer.FirstName;
 			tbLastName.Text = lecturer.LastName;
 			tbEmail.Text = lecturer.Email;
-			tbPassword.Text = "/";
+			tbPassword.Text = "";
 
 			List<Course> courses = _dataService.GetAll<Course>().ToList();
 			courses.Sort((c1, c2) => string.Compare(c1.ToString(), c2.ToString()));
 
 			cbCourses.SelectedIndex = courses.IndexOf(courses.FirstOrDefault(c => c.Id == lecturer.CourseId)!);
-			
 		}
 	}
 }

@@ -5,29 +5,29 @@ using PAAD.HMI.Lecturer;
 
 namespace PAAD.HMI.Common
 {
-    public partial class CommonForm : Form
-    {
-        private IAuthenticationService _authenticationService;
-        private IDependencyInjector _injector;
+	public partial class CommonForm : Form
+	{
+		private IAuthenticationService _authenticationService;
+		private IDependencyInjector _injector;
 
-        public CommonForm(IDependencyInjector injector, IAuthenticationService authenticationService)
-        {
-            _injector = injector;
-            _authenticationService = authenticationService;
-            InitializeComponent();
-            DisplayInitialView();
-        }
+		public CommonForm(IDependencyInjector injector, IAuthenticationService authenticationService)
+		{
+			_injector = injector;
+			_authenticationService = authenticationService;
+			InitializeComponent();
+			DisplayInitialView();
+		}
 
-        private void DisplayInitialView()
-        {
-            UserControl userControl;
-            if (_authenticationService.CurrentUser is DAL.Models.Administrator)
-                userControl = _injector.Instantiate<AdminHomeUC>()!;
-            else
-                userControl = _injector.Instantiate<LecturerViewNotifsUC>()!;
+		private void DisplayInitialView()
+		{
+			UserControl userControl;
+			if (_authenticationService.CurrentUser is DAL.Models.Administrator)
+				userControl = _injector.Instantiate<AdminHomeUC>()!;
+			else
+				userControl = _injector.Instantiate<LecturerViewNotifsUC>()!;
 
-            userControl.Dock = DockStyle.Fill;
-            Controls.Add(userControl);
-        }
-    }
+			userControl.Dock = DockStyle.Fill;
+			Controls.Add(userControl);
+		}
+	}
 }

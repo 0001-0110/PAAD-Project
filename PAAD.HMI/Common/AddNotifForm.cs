@@ -35,6 +35,5 @@ namespace PAAD.HMI.Lecturer
 			Notification.Text = tbDescription.Text;
 			return Notification;
 		}
-
 	}
 }

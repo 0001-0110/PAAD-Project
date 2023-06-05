@@ -1,4 +1,3 @@
-using PAAD.DAL.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Extensions;
@@ -7,7 +6,7 @@ using System.Reflection;
 
 namespace PAAD.DAL.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : Model
+	public class Repository<T> : IRepository<T> where T : Model
     {
         protected AufgepasstDbContext dbContext;
         private PropertyInfo property;
