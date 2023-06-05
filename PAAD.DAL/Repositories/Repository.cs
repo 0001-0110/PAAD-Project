@@ -1,27 +1,58 @@
-﻿using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
+using PAAD.DAL.DatabaseContext;
+using PAAD.DAL.Extensions;
 using PAAD.DAL.Models;
+using System.Reflection;
 
 namespace PAAD.DAL.Repositories
 {
-    public abstract class Repository<T> : IRepository<T> where T : Model
+    public class Repository<T> : IRepository<T> where T : Model
     {
         protected AufgepasstDbContext dbContext;
+        private PropertyInfo property;
 
         public Repository(AufgepasstDbContext dbContext)
         {
             this.dbContext = dbContext;
+            property = dbContext.GetType().GetProperty(typeof(DbSet<T>)) ??
+                throw new Exception("No corresponding property inside dbContext");
         }
 
-        public abstract bool IdExists(int id);
+        private DbSet<T> Values => (DbSet<T>)property.GetValue(dbContext)!;
 
-        public abstract IEnumerable<T> GetAll();
+        public virtual bool IdExists(int id)
+        {
+            return Values.Any(administrator => administrator.Id == id);
+        }
 
-        public abstract T? GetById(int id);
+        public virtual IEnumerable<T> GetAll()
+        {
+            return Values;
+        }
 
-        public abstract void Create(T entity);
+        public virtual T? GetById(int id)
+        {
+            return Values.SingleOrDefault(administrator => administrator.Id == id);
+        }
 
-        public abstract void Edit(int id, T edit);
+        public virtual void Create(T entity)
+        {
+            Values.Add(entity);
+            dbContext.SaveChanges();
+        }
 
-        public abstract void Delete(T item);
+        public virtual void Edit(int id, T edit)
+        {
+            T entity = Values.First(entity => entity.Id == id);
+            entity.Edit(edit);
+            dbContext.SaveChanges();
+        }
+
+        public virtual void Delete(T item)
+        {
+            Values.Remove(item);
+            dbContext.SaveChanges();
+        }
     }
 }
