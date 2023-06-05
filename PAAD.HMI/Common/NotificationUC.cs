@@ -8,16 +8,18 @@ namespace PAAD.HMI.Common
 {
     public partial class NotificationUC : UserControl
     {
-        private readonly IDataService _dataService;
         private readonly IDependencyInjector _injector;
+        private readonly IDataService _dataService;
         private Notification notification;
 
-        public NotificationUC(IDataService dataService, IDependencyInjector injector, Notification notification)
+        public NotificationUC(IDependencyInjector injector, IAuthenticationService authenticationService, IDataService dataService, Notification notification)
         {
-            InitializeComponent();
             _dataService = dataService;
             _injector = injector;
             this.notification = notification;
+            InitializeComponent();
+            btnEdit.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId;
+            btnDelete.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId;
         }
 
         private void NotificationUC_Load(object sender, EventArgs e)
