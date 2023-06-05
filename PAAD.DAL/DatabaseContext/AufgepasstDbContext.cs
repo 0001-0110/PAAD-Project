@@ -94,7 +94,7 @@ namespace PAAD.DAL.DatabaseContext
                 Text = "Review TP8-12",
                 AuthorId = userJava.Id,
                 CourseId = courseJava.Id,
-                ExpirationDateTime = DateTime.Today + TimeSpan.FromDays(15)
+                ExpirationDateTime = DateTime.Now.AddSeconds(30),
             });
             Notifications.Add(new Notification
             {
@@ -102,7 +102,7 @@ namespace PAAD.DAL.DatabaseContext
                 Text = "Finish p89 before our next class please",
                 AuthorId = userJava.Id,
                 CourseId = courseJava.Id,
-                ExpirationDateTime = DateTime.Today + TimeSpan.FromDays(15)
+                ExpirationDateTime = DateTime.Now.AddDays(15),
             });
             Notifications.Add(new Notification
             {
@@ -110,7 +110,7 @@ namespace PAAD.DAL.DatabaseContext
                 Text = "It's free",
                 AuthorId = userPM.Id,
                 CourseId = coursePM.Id,
-                ExpirationDateTime = DateTime.Today + TimeSpan.FromDays(15)
+                ExpirationDateTime = DateTime.Now.AddDays(15)
             });
             Notifications.Add(new Notification
             {
@@ -118,7 +118,7 @@ namespace PAAD.DAL.DatabaseContext
                 Text = "published in oopnet if it's good",
                 AuthorId = userOOPNET.Id,
                 CourseId = courseOOPNET.Id,
-                ExpirationDateTime = DateTime.Today + TimeSpan.FromDays(15)
+                ExpirationDateTime = DateTime.Now.AddDays(15)
             });
             SaveChanges();
         }
