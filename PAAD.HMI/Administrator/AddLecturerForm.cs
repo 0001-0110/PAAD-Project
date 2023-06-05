@@ -34,11 +34,13 @@ namespace PAAD.HMI.Administrator
 
 		public DAL.Models.Lecturer GetData()
 		{
-			var lecturer = _injector.Instantiate<DAL.Models.Lecturer>()!;
+			DAL.Models.Lecturer lecturer = _injector.Instantiate<DAL.Models.Lecturer>()!;
 
+			// Was this the best way to do it ?
 			lecturer.FirstName = tbFirstName.Text;
 			lecturer.LastName = tbLastName.Text;
 			lecturer.CourseId = ((Course)cbCourses.SelectedItem).Id;
+			lecturer.Course = (Course)cbCourses.SelectedItem;
 			lecturer.Email = tbEmail.Text;
 			lecturer.PasswordHash = _lecturer == null ? SecurityUtility.GetHash(tbPassword.Text, _hashAlgorithm) : _lecturer.PasswordHash;
 
