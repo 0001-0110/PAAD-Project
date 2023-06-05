@@ -17,7 +17,6 @@ namespace InversionOfControl
 
         public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface
         {
-            // TODO might already exists
             mappings.Add(typeof(TInterface), typeof(TImplementation));
             return this;
         }
@@ -96,7 +95,7 @@ namespace InversionOfControl
                 if (IsSuitableConstructor(constructor, argumentTypes))
                 {
                     if (bestConstructorParameterCount == parameterCount)
-                        throw new Exception("Multiple suitable constructor found with the same number of dependencies");
+                        throw new AmbiguousMatchException("Multiple suitable constructor found with the same number of dependencies");
 
                     // Better constructor than previous one
                     bestConstructor = constructor;
