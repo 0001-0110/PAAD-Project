@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             btnSubmit = new Button();
             tbName = new TextBox();
             btnCancel = new Button();
@@ -38,12 +37,6 @@
             tbDescription = new TextBox();
             lbDescription = new Label();
             dateTimePicker_ExpirationDate = new DateTimePicker();
-            errorProvider_Name = new ErrorProvider(components);
-            errorProvider_Date = new ErrorProvider(components);
-            errorProvider_Description = new ErrorProvider(components);
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Name).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Date).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Description).BeginInit();
             SuspendLayout();
             // 
             // btnSubmit
@@ -134,18 +127,6 @@
             dateTimePicker_ExpirationDate.TabIndex = 15;
             dateTimePicker_ExpirationDate.Value = new DateTime(2023, 5, 20, 19, 36, 48, 0);
             // 
-            // errorProvider_Name
-            // 
-            errorProvider_Name.ContainerControl = this;
-            // 
-            // errorProvider_Date
-            // 
-            errorProvider_Date.ContainerControl = this;
-            // 
-            // errorProvider_Description
-            // 
-            errorProvider_Description.ContainerControl = this;
-            // 
             // AddNotifForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -163,9 +144,6 @@
             Name = "AddNotifForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "LecturerAddNotifForm";
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Name).EndInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Date).EndInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider_Description).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,8 +159,5 @@
         private TextBox tbDescription;
         private Label lbDescription;
         private DateTimePicker dateTimePicker_ExpirationDate;
-        private ErrorProvider errorProvider_Name;
-        private ErrorProvider errorProvider_Date;
-        private ErrorProvider errorProvider_Description;
     }
 }

@@ -42,9 +42,9 @@ namespace PAAD.HMI.Lecturer
         private bool IsNotificationValid()
         {
             bool isValid = true;
-            isValid &= !tbName.SetErrorIf(errorProvider_Name, tbName.Text == string.Empty, "This notification needs a name");
-            isValid &= !dateTimePicker_ExpirationDate.SetErrorIf(errorProvider_Date, dateTimePicker_ExpirationDate.Value < DateTime.Now, "You need to reach 88 miles per hour first");
-            isValid &= !tbDescription.SetErrorIf(errorProvider_Description, tbDescription.Text == string.Empty, "This notification needs a description");
+            isValid &= !tbName.SetErrorIf(tbName.Text == string.Empty, "This notification needs a name");
+            isValid &= !dateTimePicker_ExpirationDate.SetErrorIf(dateTimePicker_ExpirationDate.Value < DateTime.Now, "You need to reach 88 miles per hour first");
+            isValid &= !tbDescription.SetErrorIf(tbDescription.Text == string.Empty, "This notification needs a description");
             return isValid;
         }
 

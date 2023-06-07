@@ -2,9 +2,14 @@
 {
     internal static class ControlExtensions
     {
-        public static bool SetErrorIf(this Control control, ErrorProvider errorProvider, bool condition, string errorMessage)
+        private static Dictionary<Control, ErrorProvider> errorProviders = new Dictionary<Control, ErrorProvider>();
+
+        public static bool SetErrorIf(this Control control, bool condition, string errorMessage)
         {
-            errorProvider.SetError(control, condition ? errorMessage : string.Empty);
+            if (!errorProviders.ContainsKey(control))
+                errorProviders.Add(control, new ErrorProvider());
+
+            errorProviders[control].SetError(control, condition ? errorMessage : string.Empty);
             return condition;
         }
     }
