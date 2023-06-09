@@ -1,4 +1,6 @@
-﻿namespace PAAD.HMI.Extensions
+﻿using Microsoft.IdentityModel.Tokens;
+
+namespace PAAD.HMI.Extensions
 {
     // This file is containing extensions for multiple types, but they all are linked to validating the fields
 
@@ -37,6 +39,9 @@
 
         public static void SetValidator<TControl>(this TControl control, Predicate<TControl> predicate, string errorMessage) where TControl : notnull, Control
         {
+            if (errorMessage.IsNullOrEmpty())
+                throw new ArgumentNullException("You can't have an empty error message");
+
             Form controlForm = control.FindForm();
             Validator validator = Validator.Create(control, predicate, errorMessage);
 
