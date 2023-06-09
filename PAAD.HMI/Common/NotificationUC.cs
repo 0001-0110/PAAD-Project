@@ -2,7 +2,6 @@
 using PAAD.BLL.Services;
 using PAAD.DAL.Models;
 using PAAD.HMI.Lecturer;
-using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Common
 {
@@ -18,8 +17,8 @@ namespace PAAD.HMI.Common
             _injector = injector;
             this.notification = notification;
             InitializeComponent();
-            btnEdit.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId;
-            btnDelete.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId;
+            btnEdit.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId || authenticationService.CurrentUser is DAL.Models.Administrator;
+            btnDelete.Visible = authenticationService.CurrentUser!.Id == notification.AuthorId || authenticationService.CurrentUser is DAL.Models.Administrator;
         }
 
         private void NotificationUC_Load(object sender, EventArgs e)
