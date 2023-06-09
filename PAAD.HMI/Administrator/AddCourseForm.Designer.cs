@@ -115,7 +115,7 @@
 			Controls.Add(lbAction);
 			Controls.Add(label1);
 			Margin = new Padding(2, 3, 2, 3);
-			Name = "AddCourseForm";
+			CourseName = "AddCourseForm";
 			StartPosition = FormStartPosition.CenterParent;
 			Text = "Add course";
 			ResumeLayout(false);

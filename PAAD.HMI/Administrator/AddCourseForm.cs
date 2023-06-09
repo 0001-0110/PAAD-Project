@@ -1,34 +1,32 @@
+using Microsoft.IdentityModel.Tokens;
+using PAAD.HMI.Extensions;
 using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AddCourseForm : Form
-	{
-		public AddCourseForm(string action)
-		{
-			InitializeComponent();
-			DisplayText(action);
-		}
+    public partial class AddCourseForm : Form
+    {
+        public string CourseName { get; set; }
 
-		private void DisplayText(string action)
-		{
-			lbAction.Text = $"{action} course";
-		}
+        public AddCourseForm(string action)
+        {
+            InitializeComponent();
+            DisplayText(action);
 
-		public string GetName()
-			=> tbName.Text;
+            lbName.SetValidator(textBox => !textBox.Text.IsNullOrEmpty(), "What were you expecting ?");
+        }
 
-		internal void SetName(string initialName)
-		{
-			tbName.Text = initialName;
-		}
+        private void DisplayText(string action)
+        {
+            lbAction.Text = $"{action} course";
+        }
 
-		private void btnSubmit_Click(object sender, EventArgs e)
-		{
-			if (tbName.Text == "")
-				MessageBoxUtility.ShowError("Course name should not be empty");
-			else
-				DialogResult = DialogResult.OK;
-		}
-	}
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (!this.IsFormValid())
+                return;
+
+            DialogResult = DialogResult.OK;
+        }
+    }
 }

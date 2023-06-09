@@ -79,10 +79,10 @@ namespace PAAD.HMI.Administrator
 
 				string initialName = (string)row.Cells[0].Value;
 				AddCourseForm form = _injector.Instantiate<AddCourseForm>("Edit")!;
-				form.SetName(initialName);
+				form.CourseName = initialName;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					string newName = form.GetName();
+					string newName = form.CourseName;
 
 					//Edit the database
 					Course? course = _dataService.GetAll<Course>().FirstOrDefault(c => c.Name == initialName);
@@ -144,7 +144,7 @@ namespace PAAD.HMI.Administrator
 				{
 					Course course = _injector.Instantiate<Course>()!;
 
-					course.Name = addCourseForm.GetName();
+					course.Name = addCourseForm.CourseName;
 
 					//add in the database
 					_dataService.Create<Course>(course);
