@@ -49,5 +49,10 @@ namespace PAAD.HMI.Lecturer
 
             DialogResult = DialogResult.OK;
         }
+
+        private void AddNotifForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DisposeValidators();
+        }
     }
 }

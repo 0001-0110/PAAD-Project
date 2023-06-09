@@ -196,6 +196,7 @@
             Name = "AddLecturerForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "AddLecturerForm";
+            FormClosed += AddLecturerForm_FormClosed;
             Load += AddLecturerForm_Load;
             ResumeLayout(false);
             PerformLayout();

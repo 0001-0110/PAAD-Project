@@ -63,5 +63,10 @@ namespace PAAD.HMI.Extensions
 
             return isValid;
         }
+
+        public static void DisposeValidators(this Form form)
+        {
+            validators.Remove(form);
+        }
     }
 }

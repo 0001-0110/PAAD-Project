@@ -144,6 +144,7 @@
             Name = "AddNotifForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "LecturerAddNotifForm";
+            FormClosed += AddNotifForm_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

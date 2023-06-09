@@ -94,5 +94,10 @@ namespace PAAD.HMI.Administrator
 
             cbCourses.SelectedIndex = courses.IndexOf(courses.FirstOrDefault(c => c.Id == lecturer.CourseId)!);
         }
+
+        private void AddLecturerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DisposeValidators();
+        }
     }
 }

@@ -1,12 +1,11 @@
 using Microsoft.IdentityModel.Tokens;
 using PAAD.HMI.Extensions;
-using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
     public partial class AddCourseForm : Form
     {
-        public string CourseName { get; set; }
+        public string? CourseName { get; set; }
 
         public AddCourseForm(string action)
         {
@@ -27,6 +26,11 @@ namespace PAAD.HMI.Administrator
                 return;
 
             DialogResult = DialogResult.OK;
+        }
+
+        private void AddCourseForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DisposeValidators();
         }
     }
 }
