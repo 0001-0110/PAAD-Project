@@ -1,7 +1,6 @@
 ﻿using InversionOfControl;
 using PAAD.DAL.Models;
 using PAAD.HMI.Extensions;
-using System.Windows.Forms.Design;
 
 namespace PAAD.HMI.Lecturer
 {
@@ -17,6 +16,10 @@ namespace PAAD.HMI.Lecturer
             InitializeComponent();
             notification = this.injector.Instantiate<Notification>()!;
             dateTimePicker_ExpirationDate.Value = DateTime.Today.AddDays(1);
+
+            tbName.SetValidator(textBox => textBox.Text != string.Empty, "This notification needs a name");
+            tbDescription.SetValidator(textBox => textBox.Text != string.Empty, "This notification needs a description");
+            dateTimePicker_ExpirationDate.SetValidator(dateTimePicker => dateTimePicker.Value > DateTime.Now, "You need to reach 88 miles per hour first");
         }
 
         // Edit notification
@@ -39,18 +42,9 @@ namespace PAAD.HMI.Lecturer
             return notification;
         }
 
-        private bool IsNotificationValid()
-        {
-            bool isValid = true;
-            isValid &= !tbName.SetErrorIf(tbName.Text == string.Empty, "This notification needs a name");
-            isValid &= !dateTimePicker_ExpirationDate.SetErrorIf(dateTimePicker_ExpirationDate.Value < DateTime.Now, "You need to reach 88 miles per hour first");
-            isValid &= !tbDescription.SetErrorIf(tbDescription.Text == string.Empty, "This notification needs a description");
-            return isValid;
-        }
-
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (!IsNotificationValid())
+            if (!this.IsFormValid())
                 return;
 
             DialogResult = DialogResult.OK;
