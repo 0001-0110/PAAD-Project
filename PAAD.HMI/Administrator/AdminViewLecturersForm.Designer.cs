@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            adminHeaderUC = new AdminHeaderUC();
             btnAddLecturer = new Button();
             btnBack = new Button();
             dataGridView1 = new DataGridView();
@@ -39,37 +38,28 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // adminHeaderUC
-            // 
-            adminHeaderUC.BackColor = SystemColors.ScrollBar;
-            adminHeaderUC.Dock = DockStyle.Top;
-            adminHeaderUC.Location = new Point(0, 0);
-            adminHeaderUC.Name = "adminHeaderUC";
-            adminHeaderUC.Size = new Size(1112, 90);
-            adminHeaderUC.TabIndex = 0;
-            // 
             // btnAddLecturer
             // 
             btnAddLecturer.Anchor = AnchorStyles.Bottom;
             btnAddLecturer.BackColor = SystemColors.Highlight;
             btnAddLecturer.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddLecturer.ForeColor = SystemColors.ButtonHighlight;
-            btnAddLecturer.Location = new Point(497, 606);
+            btnAddLecturer.Location = new Point(559, 636);
             btnAddLecturer.Margin = new Padding(2);
             btnAddLecturer.Name = "btnAddLecturer";
-            btnAddLecturer.Size = new Size(119, 50);
+            btnAddLecturer.Size = new Size(134, 52);
             btnAddLecturer.TabIndex = 17;
             btnAddLecturer.Text = "Add lecturer";
             btnAddLecturer.UseVisualStyleBackColor = false;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(16, 107);
+            btnBack.Image = Properties.Resources.backarrow;
+            btnBack.Location = new Point(18, 112);
             btnBack.Margin = new Padding(2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(97, 45);
+            btnBack.Size = new Size(109, 47);
             btnBack.TabIndex = 16;
-            btnBack.Text = "[back array]";
             btnBack.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
@@ -80,12 +70,12 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dgvColumnLecturer, dgvColumnCourse, dgvColumnEdit, dgvColumnDelete });
-            dataGridView1.Location = new Point(40, 167);
+            dataGridView1.Location = new Point(45, 175);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1031, 419);
+            dataGridView1.Size = new Size(1160, 440);
             dataGridView1.TabIndex = 18;
             // 
             // dgvColumnLecturer
@@ -118,13 +108,12 @@
             // 
             // AdminViewLecturersForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1112, 675);
+            ClientSize = new Size(1251, 709);
             Controls.Add(dataGridView1);
             Controls.Add(btnAddLecturer);
             Controls.Add(btnBack);
-            Controls.Add(adminHeaderUC);
             Name = "AdminViewLecturersForm";
             Text = "AdminViewLecturersForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

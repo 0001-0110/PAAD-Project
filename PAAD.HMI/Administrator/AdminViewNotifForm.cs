@@ -9,7 +9,7 @@ using System.Data;
 namespace PAAD.HMI.Administrator
 {
     [Obsolete]
-	public partial class AdminViewNotifForm : Form
+    public partial class AdminViewNotifForm : Form
     {
         private readonly IDependencyInjector _injector;
         private readonly IDataService _dataService;
@@ -32,13 +32,13 @@ namespace PAAD.HMI.Administrator
                 foreach (Course course in courses)
                     cbCourses.Items.Add(course);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxUtility.ShowError(ex.Message);
                 Environment.Exit(1);
             }
         }
-        
+
         private void btnBack_Click(object sender, EventArgs e)
             => Close();
 
@@ -49,7 +49,7 @@ namespace PAAD.HMI.Administrator
                 return;
             try
             {
-                Course currentCourse = (Course) cbCourses.SelectedItem;
+                Course currentCourse = (Course)cbCourses.SelectedItem;
                 IEnumerable<Notification> notifications = _dataService.GetAll<Notification>().Where(x => x.CourseId == currentCourse.Id);
                 foreach (Notification notification in notifications)
                     flpNotificationsContainer.Controls.Add(_injector.Instantiate<NotificationUC>(notification));
@@ -68,7 +68,7 @@ namespace PAAD.HMI.Administrator
             AddNotifForm addNotifForm = _injector.Instantiate<AddNotifForm>()!;
             if (addNotifForm.ShowDialog() == DialogResult.OK)
             {
-                Course currentCourse = (Course) cbCourses.SelectedItem;
+                Course currentCourse = (Course)cbCourses.SelectedItem;
                 Notification notification = addNotifForm.GetNotification();
                 notification.AuthorId = CurrentUser.Id;
                 notification.CourseId = currentCourse.Id;
