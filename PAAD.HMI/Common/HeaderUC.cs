@@ -30,7 +30,7 @@ namespace PAAD.HMI.Common
 			lbLecturerName.Text = $"{user.FirstName} {user.LastName}";
 
 			if (user is DAL.Models.Lecturer lecturer)
-				lbInfo.Text = _dataService.GetById<Course>((int)lecturer.CourseId!)!.ToString();
+				lbInfo.Text = lecturer.Course?.Name;
 			else
 				lbInfo.Text = "Administrator";
 		}
