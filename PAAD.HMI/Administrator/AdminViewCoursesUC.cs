@@ -6,76 +6,76 @@ using PAAD.HMI.Utilities;
 
 namespace PAAD.HMI.Administrator
 {
-	public partial class AdminViewCoursesUC : UserControl
-	{
-		private IDependencyInjector _injector;
-		private IDataService _dataService;
-		private const string EDIT = "Edit";
-		private const string DELETE = "Delete";
+    public partial class AdminViewCoursesUC : UserControl
+    {
+        private IDependencyInjector _injector;
+        private IDataService _dataService;
+        private const string EDIT = "Edit";
+        private const string DELETE = "Delete";
 
-		public AdminViewCoursesUC(IDependencyInjector injector, IDataService dataService)
-		{
-			_injector = injector;
-			_dataService = dataService;
-			InitializeComponent();
-			AddHeader();
-		}
+        public AdminViewCoursesUC(IDependencyInjector injector, IDataService dataService)
+        {
+            _injector = injector;
+            _dataService = dataService;
+            InitializeComponent();
+            AddHeader();
+        }
 
-		private void AddHeader()
-		{
-			HeaderUC headerUC = _injector.Instantiate<HeaderUC>()!;
-			headerUC.Dock = DockStyle.Top;
-			Controls.Add(headerUC);
-		}
+        private void AddHeader()
+        {
+            HeaderUC headerUC = _injector.Instantiate<HeaderUC>()!;
+            headerUC.Dock = DockStyle.Top;
+            Controls.Add(headerUC);
+        }
 
-		private void AdminViewCoursesUC_Load(object sender, EventArgs e)
-		{
-			IEnumerable<Course> courses = _dataService.GetAll<Course>();
-			foreach (Course course in courses)
-				dgvCourses.Rows.Add(course.Name, EDIT, DELETE);
-		}
+        private void AdminViewCoursesUC_Load(object sender, EventArgs e)
+        {
+            IEnumerable<Course> courses = _dataService.GetAll<Course>();
+            foreach (Course course in courses)
+                dgvCourses.Rows.Add(course.Name, EDIT, DELETE);
+        }
 
-		private void Delete_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				DataGridView senderGrid = (DataGridView)sender;
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridView senderGrid = (DataGridView)sender;
 
-				DataGridViewRow row = senderGrid.SelectedRows[0]; //we know there is only one max
-				if (row == null)
-					return;
+                DataGridViewRow row = senderGrid.SelectedRows[0]; //we know there is only one max
+                if (row == null)
+                    return;
 
-				ConfirmationForm form = _injector.Instantiate<ConfirmationForm>()!;
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					string initialName = (string)row.Cells[0].Value;
+                ConfirmationForm form = _injector.Instantiate<ConfirmationForm>()!;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    string initialName = (string)row.Cells[0].Value;
 
-					//Delete in the database
-					Course? course = _dataService.GetAll<Course>().FirstOrDefault(c => c.Name == initialName);
+                    //Delete in the database
+                    Course? course = _dataService.GetAll<Course>().FirstOrDefault(c => c.Name == initialName);
 
-					if (course != null)
-						_dataService.Delete<Course>(course.Id);
-					else //you're not supposed to get there
-						throw new Exception("unknown course");
-					
-					//Delete the row
-					dgvCourses.Rows.Remove(row);
-				}
-			}
-			catch (Exception ex) // Can happens if you delete a course where a lecturer is linked
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
-		}
+                    if (course != null)
+                        _dataService.Delete<Course>(course.Id);
+                    else //you're not supposed to get there
+                        throw new Exception("unknown course");
 
-		private void Edit_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				DataGridView senderGrid = (DataGridView)sender;
+                    //Delete the row
+                    dgvCourses.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex) // Can happens if you delete a course where a lecturer is linked
+            {
+                MessageBoxUtility.ShowError(ex.Message);
+                Environment.Exit(1);
+            }
+        }
 
-				DataGridViewRow row = senderGrid.SelectedRows[0]; //we know there is only one max
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridView senderGrid = (DataGridView)sender;
+
+                DataGridViewRow row = senderGrid.SelectedRows[0]; //we know there is only one max
 
 				string initialName = (string)row.Cells[0].Value;
 				AddCourseForm form = _injector.Instantiate<AddCourseForm>("Edit")!;
@@ -84,80 +84,80 @@ namespace PAAD.HMI.Administrator
 				{
 					string newName = form.CourseName;
 
-					//Edit the database
-					Course? course = _dataService.GetAll<Course>().FirstOrDefault(c => c.Name == initialName);
+                    //Edit the database
+                    Course? course = _dataService.GetAll<Course>().FirstOrDefault(c => c.Name == initialName);
 
-					if (course != null)
-					{
-						course.Name = newName;
+                    if (course != null)
+                    {
+                        course.Name = newName;
 
-						_dataService.Edit<Course>(course.Id, course);
-					}
-					else //you're not supposed to get there
-						throw new Exception("unknown course");
-					
-					//Edit the row
-					row.Cells[0].Value = newName;
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
-		}
+                        _dataService.Edit<Course>(course.Id, course);
+                    }
+                    else //you're not supposed to get there
+                        throw new Exception("unknown course");
 
-		//Handle click on buttons
-		private void dgvCourses_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridView senderGrid = (DataGridView)sender;
+                    //Edit the row
+                    row.Cells[0].Value = newName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtility.ShowError(ex.Message);
+                Environment.Exit(1);
+            }
+        }
 
-			if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-				e.RowIndex >= 0)
-			{
-				if (e.ColumnIndex == 1)
-					Edit_Click(sender, e);
-				else
-					Delete_Click(sender, e);
-			}
-		}
+        //Handle click on buttons
+        private void dgvCourses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView senderGrid = (DataGridView)sender;
 
-		private void btnBack_Click(object sender, EventArgs e)
-		{
-			AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>()!;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 1)
+                    Edit_Click(sender, e);
+                else
+                    Delete_Click(sender, e);
+            }
+        }
 
-			adminHomeUC.Dock = DockStyle.Fill;
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            AdminHomeUC adminHomeUC = _injector.Instantiate<AdminHomeUC>()!;
 
-			Parent.Controls.Add(adminHomeUC);
-			Parent.Controls.Remove(this);
+            adminHomeUC.Dock = DockStyle.Fill;
 
-			this.Dispose();
-		}
+            Parent.Controls.Add(adminHomeUC);
+            Parent.Controls.Remove(this);
 
-		private void btnAddCourse_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				AddCourseForm addCourseForm = _injector.Instantiate<AddCourseForm>("Add")!;
+            this.Dispose();
+        }
 
-				if (addCourseForm.ShowDialog() == DialogResult.OK)
-				{
-					Course course = _injector.Instantiate<Course>()!;
+        private void btnAddCourse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddCourseForm addCourseForm = _injector.Instantiate<AddCourseForm>("Add")!;
+
+                if (addCourseForm.ShowDialog() == DialogResult.OK)
+                {
+                    Course course = _injector.Instantiate<Course>()!;
 
 					course.Name = addCourseForm.CourseName;
 
-					//add in the database
-					_dataService.Create<Course>(course);
+                    //add in the database
+                    _dataService.Create<Course>(course);
 
-					//add in the grid
-					dgvCourses.Rows.Add(course.Name, EDIT, DELETE);
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBoxUtility.ShowError(ex.Message);
-				Environment.Exit(1);
-			}
-		}
-	}
+                    //add in the grid
+                    dgvCourses.Rows.Add(course.Name, EDIT, DELETE);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtility.ShowError(ex.Message);
+                Environment.Exit(1);
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ﻿namespace PAAD.HMI.Administrator
 {
     [Obsolete]
-	public partial class AdminViewLecturersForm : Form
+    public partial class AdminViewLecturersForm : Form
     {
         private DAL.Models.Administrator CurrentUser;
 
