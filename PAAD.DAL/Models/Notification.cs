@@ -5,8 +5,6 @@
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public int? AuthorId { get; set; }
         public virtual User? Author { get; set; }
-        
-        // TODO This should never be null, but dbContext is not happy otherwise
         public int? CourseId { get; set; }
         public virtual Course? Course { get; set; }
         public string Title { get; set; }
