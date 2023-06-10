@@ -5,7 +5,11 @@ namespace PAAD.HMI.Administrator
 {
     public partial class AddCourseForm : Form
     {
-        public string? CourseName { get; set; }
+        public string CourseName 
+        {
+            get { return tbName.Text; }
+            set { tbName.Text = value; }
+        }
 
         public AddCourseForm(string action)
         {
