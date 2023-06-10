@@ -12,12 +12,11 @@ namespace InversionOfControl
             mappings = new Dictionary<Type, Type>();
             singletons = new Dictionary<Type, object>();
 
-            Map<IDependencyInjector, DependencyInjector>();
+            MapSingleton<IDependencyInjector, DependencyInjector>(this);
         }
 
         public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface
         {
-            // TODO might already exists
             mappings.Add(typeof(TInterface), typeof(TImplementation));
             return this;
         }
@@ -52,45 +51,84 @@ namespace InversionOfControl
                 return singletons[type];
         }
 
-        private object? Instantiate(Type type)
+        // TODO This is functionnal but kind of ugly, might need some work to make this code prettier
+        private bool IsSuitableConstructor(ConstructorInfo constructor, Type[] argumentTypes)
         {
-            // Get all constructors by ordered by number of parameters
-            IEnumerable<IGrouping<int, ConstructorInfo>> constructors = type.GetConstructors()
-                .GroupBy(constructor => constructor.GetParameters().Length)
-                .OrderByDescending(grouping => grouping.Key);
+            // If the contructor doesn't have enough argument even without any dependencies added, it cannot be suitable
+            ParameterInfo[] parameters = constructor.GetParameters();
+            if (parameters.Length < argumentTypes.Length)
+                return false;
 
-            // Take the constructor with the most parameters that correspond to the mappings
-            // Throw an exeption if multiple constructors are suitable (with same param count)
-            ConstructorInfo? constructor = null;
-            for (int i = 0; i < constructors.Count() && constructor == null; i++)
+            // Go through each dependency argument to check if this dependency has been mapped
+            int i;
+            for (i = 0; i < parameters.Length - argumentTypes.Length; i++)
+                if (!HasMapping(parameters[i].ParameterType))
+                    return false;
+
+            // Go through each remaining argument to check that they have the correct type
+            int j;
+            for (j = 0; i + j < parameters.Length && j < argumentTypes.Length; j++)
+                if (parameters[i + j].ParameterType != argumentTypes[j])
+                    return false;
+
+            // Check that the number of argument needed is the same as the number given
+            if (j < argumentTypes.Length)
+                return false;
+
+            // This constructor can be instantiated by this injector with the given arguments
+            return true;
+        }
+
+        private ConstructorInfo? GetBestConstructor(Type type, Type[] argumentTypes)
+        {
+            ConstructorInfo? bestConstructor = null;
+            // We start at -1 so that constructor without arguments are not considered ambiguous
+            int bestConstructorParameterCount = -1;
+
+            foreach (ConstructorInfo constructor in type.GetConstructors(BindingFlags.Public | BindingFlags.Instance))
             {
-                try
+                int parameterCount = constructor.GetParameters().Length;
+                // If the current best constructor has more parameters than this one, we can skip it
+                if (parameterCount < bestConstructorParameterCount)
+                    continue;
+
+                if (IsSuitableConstructor(constructor, argumentTypes))
                 {
-                    constructor = constructors.ElementAt(i).SingleOrDefault(constructor =>
-                    constructor.GetParameters().All(parameter => HasMapping(parameter.ParameterType)));
-                }
-                catch (InvalidOperationException exception)
-                {
-                    throw new Exception("Ambiguous: multiple suitable constructors for instantiation", exception);
+                    if (bestConstructorParameterCount == parameterCount)
+                        throw new AmbiguousMatchException("Multiple suitable constructor found with the same number of dependencies");
+
+                    // Better constructor than previous one
+                    bestConstructor = constructor;
+                    bestConstructorParameterCount = parameterCount;
                 }
             }
 
+            return bestConstructor;
+        }
+
+        private object? Instantiate(Type type, params object[] arguments)
+        {
+            ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.GetType()).ToArray());
             if (constructor == null)
                 // HOW TO FIX :
                 // 1. Check that the object you are trying to instantiate has a public constructor
                 // 2. Check that each dependency has been mapped
-                // 3. Call for help (22#0130)
+                // 3. Check that all dependencies are first in the constructor
+                // 4. Check that you are calling it with the right arguments
+                // 5. Call for help (22#0130)
                 throw new Exception($"Couldn't find any suitable constructor to instantiate {type}");
 
             // Instantiate all dependencies
-            IEnumerable<object?>? dependencies = constructor.GetParameters().Select(parameter => GetInstance(parameter.ParameterType));
+            int dependencyCount = constructor.GetParameters().Length - arguments.Length;
+            IEnumerable<object?> dependencies = constructor.GetParameters().Take(dependencyCount).Select(parameter => GetInstance(parameter.ParameterType));
 
-            return constructor?.Invoke(dependencies?.ToArray());
+            // Invoke the constructor with all the dependencies followed by all the given arguments
+            return constructor?.Invoke(dependencies.Cast<object>().Concat(arguments).ToArray());
         }
 
-        public T? Instantiate<T>()
+        public T? Instantiate<T>(params object[] arguments)
         {
-            return (T?)Instantiate(typeof(T));
+            return (T?)Instantiate(typeof(T), arguments);
         }
     }
 }

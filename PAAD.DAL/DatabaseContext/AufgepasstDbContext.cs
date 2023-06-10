@@ -21,16 +21,106 @@ namespace PAAD.DAL.DatabaseContext
 #endif
             Database.EnsureCreated();
 #if DEBUG
-            Administrators.Add(new Administrator 
+            AddTestingData();
+#endif
+        }
+
+        private void AddTestingData()
+        {
+            // Add courses
+            Course courseJava = new Course
+            {
+                Name = "Java"
+            };
+            Course courseOOPNET = new Course
+            {
+                Name = "OOPNET"
+            };
+            Course coursePM = new Course
+            {
+                Name = "Project management"
+            };
+            Courses.Add(courseJava);
+            Courses.Add(courseOOPNET);
+            Courses.Add(coursePM);
+            SaveChanges();
+
+            // Add users
+            Administrator userAdmin = new Administrator
             {
                 FirstName = "Amin",
                 LastName = "Istrator",
-                Email = "test",
+                Email = "admin",
                 // Password is test
                 PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
+            };
+            Lecturer userJava = new Lecturer
+            {
+                FirstName = "Lecturer",
+                LastName = "Java",
+                Email = "java",
+                CourseId = 1,
+                // Password is test
+                PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
+            };
+            Lecturer userOOPNET = new Lecturer
+            {
+                FirstName = "Lecturer",
+                LastName = "OOPNET",
+                Email = "oopnet",
+                CourseId = 2,
+                // Password is test
+                PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
+            };
+            Lecturer userPM = new Lecturer
+            {
+                FirstName = "Lecturer",
+                LastName = "ProjectManagement",
+                Email = "pm",
+                CourseId = 3,
+                // Password is test
+                PasswordHash = new byte[] { 159, 134, 208, 129, 136, 76, 125, 101, 154, 47, 234, 160, 197, 90, 208, 21, 163, 191, 79, 27, 43, 11, 130, 44, 209, 93, 108, 21, 176, 240, 10, 8 },
+            };
+            Administrators.Add(userAdmin);
+            Lecturers.Add(userJava);
+            Lecturers.Add(userOOPNET);
+            Lecturers.Add(userPM);
+            SaveChanges();
+
+            // Add notifs
+            Notifications.Add(new Notification
+            {
+                Title = "Test in java next week",
+                Text = "Review TP8-12",
+                AuthorId = userJava.Id,
+                CourseId = courseJava.Id,
+                ExpirationDateTime = DateTime.Now.AddSeconds(30),
+            });
+            Notifications.Add(new Notification
+            {
+                Title = "Homework",
+                Text = "Finish p89 before our next class please",
+                AuthorId = userJava.Id,
+                CourseId = courseJava.Id,
+                ExpirationDateTime = DateTime.Now.AddDays(15),
+            });
+            Notifications.Add(new Notification
+            {
+                Title = "Coffee party",
+                Text = "It's free",
+                AuthorId = userPM.Id,
+                CourseId = coursePM.Id,
+                ExpirationDateTime = DateTime.Now.AddDays(15)
+            });
+            Notifications.Add(new Notification
+            {
+                Title = "What a notif",
+                Text = "published in oopnet if it's good",
+                AuthorId = userOOPNET.Id,
+                CourseId = courseOOPNET.Id,
+                ExpirationDateTime = DateTime.Now.AddDays(15)
             });
             SaveChanges();
-#endif
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

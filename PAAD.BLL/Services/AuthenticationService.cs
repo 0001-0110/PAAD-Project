@@ -9,6 +9,7 @@ namespace PAAD.BLL.Services
         private IDataService dataService;
         private HashAlgorithm hashAlgorithm;
 
+        public Action OnLogOut { get; set; }
         public User? CurrentUser { get; private set; }
 
         public AuthenticationService(IDataService dataService, HashAlgorithm hashAlgorithm)
@@ -28,6 +29,12 @@ namespace PAAD.BLL.Services
             // Else, register the current user
             CurrentUser = user;
             return true;
+        }
+
+        public void LogOut()
+        {
+            CurrentUser = null;
+            OnLogOut.Invoke();
         }
     }
 }

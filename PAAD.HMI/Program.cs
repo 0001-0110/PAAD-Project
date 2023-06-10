@@ -1,6 +1,5 @@
 using InversionOfControl;
 using PAAD.BLL.Services;
-using PAAD.BLL.Utilities;
 using PAAD.DAL.DatabaseContext;
 using PAAD.DAL.Models;
 using PAAD.DAL.Repositories;
@@ -23,7 +22,7 @@ namespace PAAD
             // The second argument should be inheriting of the first argument
             DependencyInjector injector = new DependencyInjector()
                 .MapSingleton<AufgepasstDbContext, AufgepasstDbContext>()
-                .MapSingleton<IRepository<Notification>, Repository<Notification>>()
+                .MapSingleton<IRepository<Notification>, NotificationRepository>()
                 //.Map<IRepository<Student>, Repository<Student>>()
                 .MapSingleton<IRepository<Lecturer>, Repository<Lecturer>>()
                 .MapSingleton<IRepository<Administrator>, Repository<Administrator>>()
@@ -36,7 +35,7 @@ namespace PAAD
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(injector.Instantiate<LoginForm>());
+			Application.Run(injector.Instantiate<LoginForm>());
         }
     }
 }
