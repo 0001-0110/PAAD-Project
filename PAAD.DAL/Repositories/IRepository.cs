@@ -2,10 +2,13 @@
 
 namespace PAAD.DAL.Repositories
 {
-    public interface IRepository<T> where T : Model
+    public interface IRepository
     {
         public bool IdExists(int id);
+    }
 
+    public interface IRepository<T> : IRepository where T : Model
+    {
         public IEnumerable<T> GetAll();
 
         public T? GetById(int id);

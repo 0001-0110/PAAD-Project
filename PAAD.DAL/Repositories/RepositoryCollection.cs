@@ -4,7 +4,7 @@ namespace PAAD.DAL.Repositories
 {
     public class RepositoryCollection : IRepositoryCollection
     {
-        private Dictionary<Type, object> repositories;
+        private Dictionary<Type, IRepository> repositories;
 
         public RepositoryCollection(
             IRepository<Notification> notificationRepository,
@@ -12,7 +12,7 @@ namespace PAAD.DAL.Repositories
             IRepository<Administrator> administratorRepository,
             IRepository<Course> courseRepository)
         {
-            repositories = new Dictionary<Type, object>()
+            repositories = new Dictionary<Type, IRepository>()
             {
                 [typeof(Notification)] = notificationRepository,
                 //[typeof(Student)] = studentRepository,
@@ -24,7 +24,7 @@ namespace PAAD.DAL.Repositories
 
         public IRepository<T> GetRepository<T>() where T : Model
         {
-            object? repository;
+            IRepository? repository;
 
             if (!repositories.TryGetValue(typeof(T), out repository))
                 throw new KeyNotFoundException();

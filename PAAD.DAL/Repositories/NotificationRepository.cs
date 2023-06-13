@@ -3,8 +3,6 @@ using PAAD.DAL.Models;
 
 namespace PAAD.DAL.Repositories
 {
-
-
     public class NotificationRepository : Repository<Notification>
     {
         public NotificationRepository(AufgepasstDbContext dbContext) : base(dbContext) { }
